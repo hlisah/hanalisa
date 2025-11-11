@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HANA-LISA About</title>
+<style>
+@font-face {
+  font-family: 'Fraunces';
+  src: url('Fraunces.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* ===== GLOBAL ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: 'Fraunces', serif;
+  background-color: #ffffff;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-behavior: smooth;
+}
+
+/* ===== NAVIGATION SECTIONS ===== */
+.nav-sections {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0;
+  z-index: 5;
+}
+
+.nav-sections a {
+  padding: 10px 20px;
+  border: 2px solid #1b4d3e;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #111;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav-sections a:hover {
+  background-color: #1b4d3e;
+  color: white;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 20px;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.about-image {
+  flex: 0 0 180px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+
+.about-bio {
+  flex: 1 1 0;
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 20px;
+  border-left: 3px solid #1b4d3e;
+  background-color: rgba(255,255,255,0.95);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== EXPERIENCES & DIPLOMAS ===== */
+.section-block {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px 0;
+}
+
+.section-block h2 {
+  font-size: 28px;
+  color: #1b4d3e;
+  border-bottom: 2px solid #1b4d3e;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+.section-block ul {
+  list-style: none;
+  padding-left: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.section-block li {
+  margin-bottom: 10px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<div class="nav-sections">
+  <a href="index.html">Home</a>
+  <a href="#about">About</a>
+  <a href="#work">Work</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ABOUT SECTION -->
+<div class="about-container">
+  <!-- PHOTO À GAUCHE -->
+  <div class="about-image">
+    <img src="hana.jpg" alt="HANA-LISA Portrait">
+  </div>
+
+  <!-- BIO À DROITE -->
+  <div class="about-bio">
+    Hi ! I’m Hana-Lisa, I’m 21, and I currently pursuing a Master’s in Media, Culture & Society at Pantheon-Assas University after earning a degree in Literature and Media at Sorbonne University. My studies gave me both rigorous writing skills and a deep understanding of communication sciences, shaping my approach to storytelling with clarity and critical insight.
+
+    My journey into journalism has been both enriching and at times frustrating. Through multiple internships, including with the former chief editor of Elle Magazine and within the digital editorial chief of La Tribune, I discovered the realities of traditional media. I have been introduced to economic reporting, which now truly fascinates me. Yet, I also faced discouragement: I was advised against pursuing classical journalism because of my literary writing style and diverse skills. This highlighted a tension between the artistic expression I value and the neutral, “flat” style expected in mainstream press, a compromise I am unwilling to make, especially after three years dedicated to literature.
+
+    These experiences convinced me that I want to build an independent media outlet, one that engages young audiences, makes complex topics like economy and politics accessible, and allows writing to remain vibrant and meaningful.
+
+    On this portfolio, you will find my academic work and many other projects reflecting my curiosity, commitment, and personal approach to journalism.
+  </div>
+</div>
+
+<!-- EXPERIENCES -->
+<div class="section-block">
+  <h2>Professional Experiences</h2>
+  <ul>
+    <li>Internship with former Chief Editor of Elle Magazine – Editorial Assistance</li>
+    <li>Digital Editorial Internship at La Tribune – Economic Reporting</li>
+    <li>Freelance Journalism Projects – Media & Culture Articles</li>
+  </ul>
+</div>
+
+<!-- DIPLOMAS -->
+<div class="section-block">
+  <h2>Education & Diplomas</h2>
+  <ul>
+    <li>Master’s in Media, Culture & Society – Pantheon-Assas University</li>
+    <li>Degree in Literature & Media – Sorbonne University</li>
+    <li>Various Workshops on Journalism & Communication</li>
+  </ul>
+</div>
+
+</body>
+</html>

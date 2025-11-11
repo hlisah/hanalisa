@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hana‑Lisa — Portfolio</title>
+  <meta name="description" content="Hana‑Lisa — journalist portfolio: reporting, academic work, and storytelling." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --card:#0b1220;
+      --muted:#98a0b3;
+      --accent:#f6b85b; /* warm gold */
+      --glass: rgba(255,255,255,0.04);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:linear-gradient(180deg,var(--bg),#071023 60%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;padding:40px 20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#f07a6a);display:flex;align-items:center;justify-content:center;font-weight:700;color:#071023;font-family:Merriweather;font-size:20px;box-shadow:0 6px 20px rgba(0,0,0,0.6)}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:60px 0}
+    .intro{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:32px;border-radius:var(--radius);backdrop-filter: blur(6px);box-shadow:0 6px 30px rgba(3,8,18,0.6)}
+    h1{font-family:Merriweather,serif;font-size:36px;margin:0 0 8px}
+    p.lead{color:var(--muted);margin-top:6px}
+    .cta{margin-top:18px}
+    .btn{display:inline-block;padding:10px 16px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent);font-weight:700;text-decoration:none}
+
+    /* portrait card */
+    .portrait{border-radius:16px;overflow:hidden;position:relative;min-height:360px;background:linear-gradient(180deg,#071826, #082035);display:flex;align-items:center;justify-content:center}
+    .portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(0.02) contrast(0.98)}
+    .portrait .meta{position:absolute;left:18px;bottom:18px;background:var(--glass);padding:10px 12px;border-radius:10px;font-size:13px;color:var(--muted)}
+
+    /* Sections */
+    section{margin-top:48px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .card{background:var(--card);padding:18px;border-radius:14px;box-shadow:0 8px 30px rgba(1,6,12,0.6);transition:transform .35s ease, box-shadow .35s ease;transform-origin:center;overflow:hidden}
+    .card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 18px 40px rgba(2,8,18,0.7)}
+    .card h3{margin:0 0 8px;font-family:Merriweather,serif}
+    .card p{color:var(--muted);font-size:14px}
+
+    /* Story / sample */
+    .sample{background:linear-gradient(180deg, rgba(246,184,91,0.06), transparent);padding:20px;border-radius:12px;border:1px solid rgba(246,184,91,0.06)}
+
+    /* subtle animated underline */
+    .underline{display:inline-block;position:relative}
+    .underline::after{content:'';position:absolute;left:0;bottom:-6px;height:3px;width:100%;background:linear-gradient(90deg,var(--accent),#f07a6a);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.9,.3,1)}
+    .underline:hover::after{transform:scaleX(1)}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0;transform:translateY(18px) scale(.995);transition:opacity .6s ease, transform .6s cubic-bezier(.2,.9,.3,1)}
+    .reveal.visible{opacity:1;transform:none}
+
+    footer{margin-top:80px;padding:30px 0;color:var(--muted);font-size:14px;border-top:1px solid rgba(255,255,255,0.03)}
+
+    /* Responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr;}.portrait{min-height:260px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">HL</div>
+        <div>
+          <div style="font-weight:700">Hana‑Lisa</div>
+          <div style="font-size:13px;color:var(--muted)">Journalist — Storyteller</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#writing">Writing</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="intro">
+          <h1 class="reveal">Hi! I’m <span class="underline">Hana‑Lisa</span></h1>
+          <p class="lead reveal">I’m 21, currently pursuing a Master’s in Media, Culture & Society at Pantheon‑Assas University after earning a degree in Literature and Media at Sorbonne University. My studies gave me rigorous writing skills and a deep understanding of communication sciences — tools I use to make complex topics readable and relevant.</p>
+
+          <div class="reveal" style="margin-top:16px">
+            <p style="color:var(--muted)">Through internships at Elle Magazine and La Tribune I discovered both the craft of editorial work and the tensions between literary voice and mainstream neutrality. I now aim to build independent, vivid journalism that speaks to younger audiences about economy and politics.</p>
+          </div>
+
+          <div class="cta reveal">
+            <a class="btn" href="#work">See my work</a>
+            <a class="btn" style="margin-left:12px;opacity:.85" href="#contact">Contact me</a>
+          </div>
+        </div>
+
+        <aside class="portrait reveal">
+          <!-- Replace with your portrait image (recommended: warm, natural light, neutral background) -->
+          <img src="assets/portrait.jpg" alt="Hana-Lisa portrait">
+          <div class="meta">Pantheon‑Assas — Sorbonne • 21</div>
+        </aside>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="reveal">
+        <h2 style="font-family:Merriweather">About</h2>
+        <p class="lead" style="max-width:760px;color:var(--muted)">I combine literary training with editorial experience. I care about clarity, cultural depth, and keeping writing alive. I report on economy, politics and culture with an approach that refuses to flatten voice for the sake of neutrality — while staying rigorous and factual.</p>
+      </section>
+
+      <!-- Work -->
+      <section id="work">
+        <h2 class="reveal" style="font-family:Merriweather">Selected work</h2>
+        <div class="cards">
+          <article class="card reveal">
+            <h3>Long-form: Economic inequality in regional France</h3>
+            <p>Investigative feature combining interviews, official data and narrative reporting. (PDF / link placeholder)</p>
+          </article>
+
+          <article class="card reveal">
+            <h3>Data‑driven explainer: How monetary policy affects everyday life</h3>
+            <p>Accessible explainer aimed at younger readers — charts and short video embed recommended.</p>
+          </article>
+
+          <article class="card reveal">
+            <h3>Profile: The editor who reshaped a magazine</h3>
+            <p>Profile piece written after internship at Elle — combines observation and reflective voice.</p>
+          </article>
+
+          <article class="card reveal">
+            <h3>Academic paper: Narratives and political discourse</h3>
+            <p>Literary analysis with implications for modern reporting and media literacy.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Writing sample -->
+      <section id="writing" class="reveal">
+        <h2 style="font-family:Merriweather">Writing sample</h2>
+        <div class="sample" style="margin-top:12px">
+          <!-- Insert short sample text or link to full article -->
+          <p style="margin:0;font-size:15px;color:var(--muted);">The sample below is also included as a downloadable text file in the assets folder.</p>
+          <div style="margin-top:12px;background:transparent;padding:16px;border-radius:8px">
+            <p style="margin:0;color:#eaf4ff;">"Young workers across the city speak of invisible taxes — not the ones on receipts, but the time and energy extracted by precarious contracts, long commutes and unpaid digital labour. Behind the headline numbers of unemployment and GDP lies a quieter arithmetic of exhaustion. To understand the policy choices shaping their lives, we must translate economic jargon into the daily ledger of ordinary people."</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="reveal">
+        <h2 style="font-family:Merriweather">Projects & ideas</h2>
+        <div class="cards" style="margin-top:14px">
+          <div class="card">
+            <h3>Independent mini‑newsletter</h3>
+            <p>A weekly economy explainer for under‑30s. Short, grounded, with a recommended 800‑1200 word format.</p>
+          </div>
+          <div class="card">
+            <h3>Docu‑podcast episode</h3>
+            <p>Field interviews + narrated scenes to humanize financial stories.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="reveal">
+        <h2 style="font-family:Merriweather">Contact</h2>
+        <p style="color:var(--muted)">Email: <a href="mailto:hana.lisa@email.com" style="color:var(--accent);text-decoration:none">hana.lisa@email.com</a> — Open to collaborations, commissions, internships.</p>
+      </section>
+
+      <footer>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+          <div>&copy; Hana‑Lisa — 2025</div>
+          <div style="color:var(--muted)">Built with a sober design for clarity. Replace placeholder images in <code>assets/</code>.</div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Simple reveal-on-scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); })
+    },{threshold:0.12});
+    reveals.forEach(r=>io.observe(r));
+
+    // Smooth scroll for nav
+    document.querySelectorAll('nav a, .btn').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href && href.startsWith('#')){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      })
+    });
+
+    // Floating subtle parallax on portrait
+    const portrait = document.querySelector('.portrait');
+    if(portrait){
+      window.addEventListener('mousemove',(e)=>{
+        const x = (e.clientX - window.innerWidth/2) / 60;
+        const y = (e.clientY - window.innerHeight/2) / 60;
+        portrait.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    }
+  </script>
+</body>
+</html>
