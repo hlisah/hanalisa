@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -6,16 +5,27 @@
 <title>HANA-LISA Portfolio</title>
 
 <style>
-/* ===== GLOBAL ===== */
-body {
-  margin:0; padding:0;
-  font-family: 'Fraunces', serif;
-  background:#fff; color:#111;
+@font-face {
+  font-family: 'Fraunces';
+  src: url('Fraunces.ttf') format('truetype');
+  font-display: swap;
 }
 
-/* ===== NAV ===== */
+/* GLOBAL */
+body {
+  margin:0;
+  padding:0;
+  font-family:'Fraunces', serif;
+  background:#fff;
+  color:#111;
+}
+
+/* NAVIGATION */
 .nav-sections {
-  display:flex; justify-content:center; gap:20px; margin:30px 0 20px 0;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin:30px 0 20px 0;
 }
 .nav-sections a {
   padding:10px 20px;
@@ -26,23 +36,49 @@ body {
   font-weight:bold;
   transition:0.3s;
 }
-.nav-sections a:hover { background:#1b4d3e; color:#fff; }
-
-/* ===== VIDEO ===== */
-.video-band { width:90%; height:250px; margin:0 auto; border-radius:12px; overflow:hidden; }
-.video-band video { width:100%; height:100%; object-fit:cover; }
-
-/* ===== INTRO ===== */
-.intro { text-align:center; margin:20px 0; }
-.intro h1 { font-size:clamp(30px,5vw,50px); opacity:0; transform:translateY(50px); animation:cinematicTitle 2s ease-out forwards; }
-.slogan { font-size:20px; margin-top:10px; color:#222; }
-.quote { font-size:18px; font-style:italic; margin-top:8px; color:#222; }
-.discover {
-  display:inline-block; margin-top:15px; padding:10px 25px;
-  border:2px solid #1b4d3e; border-radius:6px;
-  text-decoration:none; color:#111; font-weight:bold;
+.nav-sections a:hover {
+  background:#1b4d3e;
+  color:#fff;
 }
-.discover:hover { background:#1b4d3e; color:#fff; }
+
+/* VIDEO */
+.video-band {
+  width:90%;
+  height:250px;
+  margin:0 auto;
+  border-radius:12px;
+  overflow:hidden;
+}
+.video-band video {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* INTRO */
+.intro {
+  text-align:center;
+  margin:20px 0;
+}
+.intro h1 { 
+  font-size:clamp(30px,5vw,50px);
+  opacity:0;
+  transform:translateY(50px);
+  animation:cinematicTitle 2s ease-out forwards;
+}
+.slogan { font-size:20px; margin-top:10px; color:#222;}
+.quote { font-size:18px; font-style:italic; margin-top:8px; color:#222;}
+.discover {
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 25px;
+  border:2px solid #1b4d3e;
+  border-radius:6px;
+  text-decoration:none;
+  color:#111;
+  font-weight:bold;
+}
+.discover:hover {background:#1b4d3e; color:#fff;}
 
 /* CINEMATIC EFFECT */
 @keyframes cinematicTitle {
@@ -51,60 +87,34 @@ body {
   100% { opacity:1; transform:translateY(0) scale(1); }
 }
 
-/* ===== SKETCHES ===== */
-.sketches-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  margin: 40px auto;
+/* SKETCHES */
+.sketches-bg {
+  position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;
 }
-
-.sketch-wrapper {
-  position: relative;
-  width: 180px;
-  text-align: center;
-}
-
-.sketch {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.sketch:hover { transform: scale(1.05); }
-
+.sketch { position:absolute; width:180px; cursor:pointer; opacity:0.9; pointer-events:auto; }
+.sketch1 { top:40%; left:70%; }
+.sketch2 { top:70%; left:70%; }
+.sketch3 { top:55%; left:70%; }
 .sketch-description {
-  display: none;
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(27,77,62,0.9);
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 14px;
-  width: max-content;
-  max-width: 200px;
-  text-align: center;
+  position:absolute; background:rgba(27,77,62,0.9); color:#fff;
+  padding:6px 10px; border-radius:6px; font-size:14px; display:none; z-index:10;
 }
 
-.sketch-wrapper:hover .sketch-description { display: block; }
-
-/* ===== MEDIA SECTION ===== */
+/* MEDIA SECTION */
 .media-section {
   width:90%;
-  max-width:600px;
-  margin:40px auto 60px auto;
+  margin:20px auto 30px auto;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
 }
 
+/* MEDIA TITLE */
 .media-title {
   font-size:18px;
   font-weight:bold;
   text-transform:uppercase;
+  border:none;
   border-bottom:2px solid #1b4d3e;
   padding:10px 0;
   cursor:pointer;
@@ -113,25 +123,32 @@ body {
   align-items:center;
   transition: background 0.3s;
 }
-.media-title::after { content:'▼'; font-size:14px; transition: transform 0.3s; }
+.media-title:hover { background-color: rgba(27,77,62,0.05); }
+.media-title::after {
+  content: '▼';
+  font-size:14px;
+  transition: transform 0.3s;
+}
 .media-title.open::after { transform: rotate(-180deg); }
 
+/* MEDIA CONTENT */
 .media-content {
   display:none;
   margin-top:10px;
   flex-direction:column;
-  position:relative;
+  position:relative; /* parent pour media-info */
 }
-.media-block { padding:0; width:100%; }
-.media-item { cursor:pointer; margin:6px 0; transition: color 0.3s; }
+.media-block { padding:0; width:300px; }
+.media-item { cursor:pointer; margin:6px 0; transition:color 0.3s; }
 .media-item:hover { color:#1b4d3e; }
 
+/* MEDIA INFO ABOVE avec fade */
 .media-info {
   position:absolute;
   top:-220px;
   left:0;
   display:none;
-  width:100%;
+  width:300px;
   text-align:center;
   background:rgba(255,255,255,0.95);
   padding:10px;
@@ -141,12 +158,27 @@ body {
   opacity:0;
   transition: opacity 0.3s ease;
 }
-.media-info.show { display:block; opacity:1; }
-.media-info img { width:100%; border-radius:6px; margin-bottom:8px; cursor:pointer; }
-
+.media-info.show {
+  display:block;
+  opacity:1;
+}
+.media-info img {
+  width:100%;
+  border-radius:6px;
+  margin-bottom:8px;
+  cursor:pointer;
+}
 </style>
 </head>
 <body>
+
+<!-- SKETCHES -->
+<div class="sketches-bg">
+  <img src="hugo.jpg" class="sketch sketch1" alt="Hugo" data-description="Hugo represents literary depth.">
+  <img src="james.jpg" class="sketch sketch3" alt="James" data-description="James inspires my curiosity.">
+  <img src="shafak.jpg" class="sketch sketch2" alt="Shafak" data-description="Shafak symbolizes multicultural insight.">
+</div>
+<div class="sketch-description" id="sketchDesc"></div>
 
 <!-- NAV -->
 <div class="nav-sections">
@@ -158,7 +190,7 @@ body {
 <!-- VIDEO -->
 <div class="video-band">
   <video autoplay muted loop playsinline>
-    <source src="./videos/car.mp4" type="video/mp4">
+    <source src="car.mp4" type="video/mp4">
   </video>
 </div>
 
@@ -168,22 +200,6 @@ body {
   <div class="slogan">Welcome! I’m glad you’re here.</div>
   <div class="quote">“Investigate, understand, communicate.”</div>
   <a href="about.html" class="discover">Discover More</a>
-</div>
-
-<!-- SKETCHES -->
-<div class="sketches-container">
-  <div class="sketch-wrapper">
-    <img src="./images/hugo.jpg" class="sketch" alt="Hugo">
-    <div class="sketch-description">Hugo represents literary depth.</div>
-  </div>
-  <div class="sketch-wrapper">
-    <img src="./images/james.jpg" class="sketch" alt="James">
-    <div class="sketch-description">James inspires my curiosity.</div>
-  </div>
-  <div class="sketch-wrapper">
-    <img src="./images/shafak.jpg" class="sketch" alt="Shafak">
-    <div class="sketch-description">Shafak symbolizes multicultural insight.</div>
-  </div>
 </div>
 
 <!-- MEDIA SECTION -->
@@ -203,25 +219,39 @@ body {
 </div>
 
 <script>
+// SKETCH POPUP
+const sketches = document.querySelectorAll('.sketch'); 
+const desc = document.getElementById('sketchDesc'); 
+sketches.forEach(sketch => {
+  sketch.addEventListener('click', ()=> {
+    desc.textContent = sketch.dataset.description;
+    const rect = sketch.getBoundingClientRect();
+    desc.style.top = (rect.top - 30)+'px';
+    desc.style.left = rect.left+'px';
+    desc.style.display = 'block';
+    setTimeout(()=>{ desc.style.display='none'; }, 3000);
+  });
+});
+
 // MEDIA TOGGLE
 const mediaTitle = document.getElementById('mediaTitle');
 const mediaContent = document.getElementById('mediaContent');
-mediaTitle.addEventListener('click', ()=>{
+mediaTitle.addEventListener('click', ()=> {
   const isOpen = mediaContent.style.display==='flex';
-  mediaContent.style.display = isOpen?'none':'flex';
+  mediaContent.style.display = isOpen ? 'none':'flex';
   mediaTitle.classList.toggle('open', !isOpen);
 });
 
-// MEDIA ITEMS
+// MEDIA ITEMS avec fade et fermeture au clic ailleurs
 const items = document.querySelectorAll('.media-item');
 const info = document.getElementById('mediaInfo');
 const mediaImg = document.getElementById('mediaImg');
 const mediaText = document.getElementById('mediaText');
 let currentOpen = null;
 const mediaData = {
-  movie: { img:'./images/papicha.jpg', text:'“Papicha” – The courage to express and create under constraint.' },
-  book: { img:'./images/sartre.jpg', text:'“Sartre” – Stories of resilience and hope amid chaos.' },
-  report:{ img:'./images/quai.jpeg', text:'“Quai” – A reflection on perception and storytelling.' }
+  movie: { img:'papicha.jpg', text:'“Papicha” – The courage to express and create under constraint.' },
+  book: { img:'sartre.jpg', text:'“s” – Stories of resilience and hope amid chaos.' },
+  report:{ img:'quai.jpeg', text:'“Quai” – A reflection on perception and storytelling.' }
 };
 
 function closeMedia() {
@@ -230,11 +260,11 @@ function closeMedia() {
   currentOpen = null;
 }
 
-items.forEach(item=>{
-  item.addEventListener('click', e=>{
+items.forEach(item => {
+  item.addEventListener('click', e => {
     e.stopPropagation();
     const target = item.dataset.target;
-    if(currentOpen===target){ closeMedia(); }
+    if(currentOpen === target) { closeMedia(); }
     else {
       mediaImg.src = mediaData[target].img;
       mediaText.textContent = mediaData[target].text;
@@ -245,10 +275,11 @@ items.forEach(item=>{
   });
 });
 
-document.addEventListener('click', ()=>{ if(currentOpen) closeMedia(); });
+document.addEventListener('click', ()=> { if(currentOpen) closeMedia(); });
 </script>
 
 </body>
 </html>
+
 
 
