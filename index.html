@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -87,17 +88,48 @@ body {
   100% { opacity:1; transform:translateY(0) scale(1); }
 }
 
-/* SKETCHES */
-.sketches-bg {
-  position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;
+/* SKETCHES RESPONSIVE */
+.sketches-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px 0;
 }
-.sketch { position:absolute; width:180px; cursor:pointer; opacity:0.9; pointer-events:auto; }
-.sketch1 { top:40%; left:70%; }
-.sketch2 { top:70%; left:70%; }
-.sketch3 { top:55%; left:70%; }
+.sketch-wrapper {
+  position: relative;
+  width: 180px;
+  text-align: center;
+}
+.sketch {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.sketch:hover {
+  transform: scale(1.05);
+}
 .sketch-description {
-  position:absolute; background:rgba(27,77,62,0.9); color:#fff;
-  padding:6px 10px; border-radius:6px; font-size:14px; display:none; z-index:10;
+  display: none;
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(27,77,62,0.9);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  width: max-content;
+  max-width: 200px;
+  text-align: center;
+  z-index: 10;
+}
+.sketch-wrapper:hover .sketch-description {
+  display: block;
 }
 
 /* MEDIA SECTION */
@@ -108,13 +140,10 @@ body {
   flex-direction:column;
   align-items:flex-start;
 }
-
-/* MEDIA TITLE */
 .media-title {
   font-size:18px;
   font-weight:bold;
   text-transform:uppercase;
-  border:none;
   border-bottom:2px solid #1b4d3e;
   padding:10px 0;
   cursor:pointer;
@@ -131,18 +160,15 @@ body {
 }
 .media-title.open::after { transform: rotate(-180deg); }
 
-/* MEDIA CONTENT */
 .media-content {
   display:none;
   margin-top:10px;
   flex-direction:column;
-  position:relative; /* parent pour media-info */
+  position:relative;
 }
 .media-block { padding:0; width:300px; }
 .media-item { cursor:pointer; margin:6px 0; transition:color 0.3s; }
 .media-item:hover { color:#1b4d3e; }
-
-/* MEDIA INFO ABOVE avec fade */
 .media-info {
   position:absolute;
   top:-220px;
@@ -172,14 +198,6 @@ body {
 </head>
 <body>
 
-<!-- SKETCHES -->
-<div class="sketches-bg">
-  <img src="hugo.jpg" class="sketch sketch1" alt="Hugo" data-description="Hugo represents literary depth.">
-  <img src="james.jpg" class="sketch sketch3" alt="James" data-description="James inspires my curiosity.">
-  <img src="shafak.jpg" class="sketch sketch2" alt="Shafak" data-description="Shafak symbolizes multicultural insight.">
-</div>
-<div class="sketch-description" id="sketchDesc"></div>
-
 <!-- NAV -->
 <div class="nav-sections">
   <a href="about.html">About</a>
@@ -202,6 +220,22 @@ body {
   <a href="about.html" class="discover">Discover More</a>
 </div>
 
+<!-- SKETCHES RESPONSIVE -->
+<div class="sketches-container">
+  <div class="sketch-wrapper">
+    <img src="images/hugo.jpg" class="sketch" alt="Hugo">
+    <div class="sketch-description">Hugo represents literary depth.</div>
+  </div>
+  <div class="sketch-wrapper">
+    <img src="images/james.jpg" class="sketch" alt="James">
+    <div class="sketch-description">James inspires my curiosity.</div>
+  </div>
+  <div class="sketch-wrapper">
+    <img src="images/shafak.jpg" class="sketch" alt="Shafak">
+    <div class="sketch-description">Shafak symbolizes multicultural insight.</div>
+  </div>
+</div>
+
 <!-- MEDIA SECTION -->
 <div class="media-section">
   <div class="media-title" id="mediaTitle">3 Medias to Know Me</div>
@@ -219,20 +253,6 @@ body {
 </div>
 
 <script>
-// SKETCH POPUP
-const sketches = document.querySelectorAll('.sketch'); 
-const desc = document.getElementById('sketchDesc'); 
-sketches.forEach(sketch => {
-  sketch.addEventListener('click', ()=> {
-    desc.textContent = sketch.dataset.description;
-    const rect = sketch.getBoundingClientRect();
-    desc.style.top = (rect.top - 30)+'px';
-    desc.style.left = rect.left+'px';
-    desc.style.display = 'block';
-    setTimeout(()=>{ desc.style.display='none'; }, 3000);
-  });
-});
-
 // MEDIA TOGGLE
 const mediaTitle = document.getElementById('mediaTitle');
 const mediaContent = document.getElementById('mediaContent');
@@ -242,24 +262,22 @@ mediaTitle.addEventListener('click', ()=> {
   mediaTitle.classList.toggle('open', !isOpen);
 });
 
-// MEDIA ITEMS avec fade et fermeture au clic ailleurs
+// MEDIA ITEMS avec fade
 const items = document.querySelectorAll('.media-item');
 const info = document.getElementById('mediaInfo');
 const mediaImg = document.getElementById('mediaImg');
 const mediaText = document.getElementById('mediaText');
 let currentOpen = null;
 const mediaData = {
-  movie: { img:'papicha.jpg', text:'“Papicha” – The courage to express and create under constraint.' },
-  book: { img:'sartre.jpg', text:'“sartre” – Stories of resilience and hope amid chaos.' },
-  report:{ img:'quai.jpeg', text:'“Quai” – A reflection on perception and storytelling.' }
+  movie: { img:'images/papicha.jpg', text:'“Papicha” – The courage to express and create under constraint.' },
+  book: { img:'images/sartre.jpg', text:'“Sartre” – Stories of resilience and hope amid chaos.' },
+  report: { img:'images/quai.jpeg', text:'“Quai” – A reflection on perception and storytelling.' }
 };
-
 function closeMedia() {
   info.classList.remove('show');
   setTimeout(()=>{ info.style.display='none'; }, 300);
   currentOpen = null;
 }
-
 items.forEach(item => {
   item.addEventListener('click', e => {
     e.stopPropagation();
@@ -274,9 +292,12 @@ items.forEach(item => {
     }
   });
 });
-
 document.addEventListener('click', ()=> { if(currentOpen) closeMedia(); });
 </script>
 
 </body>
 </html>
+
+</body>
+</html>
+
