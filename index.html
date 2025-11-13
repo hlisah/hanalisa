@@ -67,7 +67,7 @@ html, body {
 }
 .typewriter {
   display:inline-block;
-  border-right:2px solid #1b4d3e; /* curseur clignotant */
+  border-right:2px solid #1b4d3e;
   white-space:nowrap;
   overflow:hidden;
   font-size:clamp(36px,5vw,60px);
@@ -279,6 +279,69 @@ html, body {
 .carousel-btn:hover { background: rgba(27,77,62,0.9); }
 .carousel-btn.left { left:-35px; }
 .carousel-btn.right { right:-35px; }
+
+/* ===== MOBILE FIXES ===== */
+@media (max-width: 600px) {
+
+  /* NAV */
+  .nav-sections {
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .nav-sections a {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  /* VIDEO */
+  .video-band {
+    height: 180px;
+  }
+
+  /* INTRO */
+  .typewriter {
+    font-size: 30px;
+  }
+  .slogan { font-size: 18px; }
+  .quote { font-size: 16px; }
+
+  /* MEDIA SECTION */
+  .media-content {
+    flex-direction: column;
+  }
+  .media-info {
+    position: static;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  /* SKETCHES */
+  .sketches-bg {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .sketch {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  /* CAROUSEL */
+  .carousel-container {
+    width: 100%;
+  }
+  .carousel-inner {
+    flex-direction: column;
+    transform: none !important;
+  }
+  .carousel-item {
+    width: 70%;
+    margin: 0 auto 20px auto;
+  }
+  .carousel-btn {
+    display: none;
+  }
+}
 </style>
 </head>
 
@@ -306,7 +369,7 @@ html, body {
   <a href="about.html" class="discover">Discover More</a>
 </div>
 
-<!-- MEDIA, SKETCHES, CAROUSEL restent inchangés -->
+<!-- MEDIA SECTION -->
 <div class="media-section">
   <div class="media-title" id="mediaTitle">3 Medias to Know Me</div>
   <div class="media-content" id="mediaContent">
@@ -322,6 +385,7 @@ html, body {
   </div>
 </div>
 
+<!-- SKETCHES -->
 <div class="sketches-bg">
   <div>
     <img src="hugo.jpg" class="sketch" alt="Hugo" data-description="Hugo represents literary depth.">
@@ -337,6 +401,7 @@ html, body {
   </div>
 </div>
 
+<!-- CAROUSEL -->
 <div class="carousel-container">
   <div class="carousel-title">Latest Articles</div>
   <div class="carousel-wrapper">
@@ -384,7 +449,7 @@ function typeWriter() {
 typeWriter();
 target.style.animation = "blinkCursor 0.7s step-end infinite";
 
-// SKETCHES - texte sous image
+// SKETCHES
 const sketches = document.querySelectorAll('.sketch');
 sketches.forEach(sketch => {
   const descContainer = sketch.nextElementSibling;
@@ -462,3 +527,6 @@ btnLeft.addEventListener('click', () => {
   carouselInner.style.transform = `translateX(-${scrollPosition}px)`;
 });
 </script>
+
+</body>
+</html>
