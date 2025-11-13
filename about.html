@@ -73,6 +73,11 @@ html, body {
   height: auto;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease-out;
+}
+
+.about-image img:hover {
+  transform: scale(1.03);
 }
 
 .about-bio {
@@ -119,6 +124,18 @@ html, body {
   margin-bottom: 10px;
 }
 
+/* ===== FADE-SLIDE ANIMATION ===== */
+.fade-slide {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-slide.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .about-container {
@@ -135,7 +152,7 @@ html, body {
 <body>
 
 <!-- NAVIGATION -->
-<div class="nav-sections">
+<div class="nav-sections fade-slide">
   <a href="index.html">Home</a>
   <a href="work.html">Work</a>
   <a href="contact.html">Contact</a>
@@ -144,15 +161,15 @@ html, body {
 <!-- ABOUT SECTION -->
 <div class="about-container">
   <!-- PHOTO À GAUCHE -->
-  <div class="about-image">
+  <div class="about-image fade-slide">
     <img src="hana.jpg" alt="HANA-LISA Portrait">
   </div>
 
   <!-- BIO À DROITE -->
-  <div class="about-bio">
+  <div class="about-bio fade-slide">
     Hi ! I’m Hana-Lisa, I’m 21, and I currently pursuing a Master’s in Media, Culture & Society at Pantheon-Assas University after earning a degree in Literature and Media at Sorbonne University. My studies gave me both rigorous writing skills and a deep understanding of communication sciences, shaping my approach to storytelling with clarity and critical insight.
 
-    My journey into journalism has been both enriching and at times frustrating. Through multiple internships, including with the former chief editor of </em>Elle Magazine</em></em> and within the digital editorial chief of La Tribune, I discovered the realities of traditional media. I have been introduced to economic reporting, which now truly fascinates me. Yet, I also faced discouragement: I was advised against pursuing classical journalism because of my literary writing style and diverse skills. This highlighted a tension between the artistic expression I value and the neutral, “flat” style expected in mainstream press, a compromise I am unwilling to make, especially after three years dedicated to literature.
+    My journey into journalism has been both enriching and at times frustrating. Through multiple internships, including with the former chief editor of <em>Elle Magazine</em> and within the digital editorial chief of La Tribune, I discovered the realities of traditional media. I have been introduced to economic reporting, which now truly fascinates me. Yet, I also faced discouragement: I was advised against pursuing classical journalism because of my literary writing style and diverse skills. This highlighted a tension between the artistic expression I value and the neutral, “flat” style expected in mainstream press, a compromise I am unwilling to make, especially after three years dedicated to literature.
 
     These experiences convinced me that I want to build an independent media outlet, one that engages young audiences, makes complex topics like economy and politics accessible, and allows writing to remain vibrant and meaningful.
 
@@ -161,7 +178,7 @@ html, body {
 </div>
 
 <!-- EXPERIENCES -->
-<div class="section-block">
+<div class="section-block fade-slide">
   <h2>Professional Experiences</h2>
   <ul>
     <li>Internship with former Chief Editor of Elle Magazine – Editorial Assistance</li>
@@ -171,7 +188,7 @@ html, body {
 </div>
 
 <!-- DIPLOMAS -->
-<div class="section-block">
+<div class="section-block fade-slide">
   <h2>Education & Diplomas</h2>
   <ul>
     <li>Master’s in Media, Culture & Society – Pantheon-Assas University</li>
@@ -179,6 +196,28 @@ html, body {
     <li>Various Workshops on Journalism & Communication</li>
   </ul>
 </div>
+
+<script>
+// ANIMATION AU SCROLL
+const faders = document.querySelectorAll('.fade-slide');
+
+const appearOptions = {
+  threshold: 0.2,
+  rootMargin: "0px 0px -50px 0px"
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll){
+  entries.forEach(entry => {
+    if(!entry.isIntersecting) return;
+    entry.target.classList.add('show');
+    appearOnScroll.unobserve(entry.target);
+  });
+}, appearOptions);
+
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
+});
+</script>
 
 </body>
 </html>
