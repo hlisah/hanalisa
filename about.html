@@ -50,6 +50,25 @@ html, body {
   color: white;
 }
 
+/* ===== BANNER VIDEO ===== */
+.banner-video-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.banner-video {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.92) contrast(1.05) saturate(1.05);
+  border-radius: 18px;
+}
+
 /* ===== ABOUT SECTION ===== */
 .about-container {
   display: flex;
@@ -121,7 +140,7 @@ html, body {
 }
 
 .section-block li {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 /* ===== FADE-SLIDE ANIMATION ===== */
@@ -147,6 +166,18 @@ html, body {
     max-width: 90%;
   }
 }
+
+/* ===== FOOTER ===== */
+footer {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  padding: 20px 0;
+  border-top: 1px solid #1b4d3e;
+  background: #fafafa;
+  margin-top: 40px;
+}
 </style>
 </head>
 <body>
@@ -158,14 +189,18 @@ html, body {
   <a href="contact.html">Contact</a>
 </div>
 
+<!-- BANNER VIDEO -->
+<div class="banner-video-container fade-slide">
+  <video class="banner-video" autoplay muted loop playsinline>
+    <source src="workvideo.mp4" type="video/mp4">
+  </video>
+</div>
+
 <!-- ABOUT SECTION -->
 <div class="about-container">
-  <!-- PHOTO À GAUCHE -->
   <div class="about-image fade-slide">
     <img src="hana.jpg" alt="HANA-LISA Portrait">
   </div>
-
-  <!-- BIO À DROITE -->
   <div class="about-bio fade-slide">
     Hi ! I’m Hana-Lisa, I’m 21, and I currently pursuing a Master’s in Media, Culture & Society at Pantheon-Assas University after earning a degree in Literature and Media at Sorbonne University. My studies gave me both rigorous writing skills and a deep understanding of communication sciences, shaping my approach to storytelling with clarity and critical insight.
 
@@ -181,9 +216,18 @@ html, body {
 <div class="section-block fade-slide">
   <h2>Professional Experiences</h2>
   <ul>
-    <li>Internship with former Chief Editor of Elle Magazine – Editorial Assistance</li>
-    <li>Digital Editorial Internship at La Tribune – Economic Reporting</li>
-    <li>Freelance Journalism Projects – Media & Culture Articles</li>
+    <li><strong>Assistant Communication – Actually Agency (2024)</strong><br>
+      Worked directly with the former Editor-in-Chief of Elle Magazine in her agency.
+    </li>
+    </li>
+    <li><strong>Economic Journalist & Media Creator – Collaboration with Digital Editor-in-Chief of La Tribune (2025)</strong><br>
+      Co-created a youth-focused economic media platform; produced economic content and analysis.
+    </li>
+    <li><strong>Marketing & Communication Collaborator – Start in Assas ( 2025)</strong><br>
+      Supported events and marketing initiatives for the student entrepreneurship association of Pantheon-Assas University.
+    </li>
+    <li><strong>Music Teacher – Guitar & Music</strong>
+    </li>
   </ul>
 </div>
 
@@ -191,11 +235,16 @@ html, body {
 <div class="section-block fade-slide">
   <h2>Education & Diplomas</h2>
   <ul>
-    <li>Master’s in Media, Culture & Society – Pantheon-Assas University</li>
-    <li>Degree in Literature & Media – Sorbonne University</li>
-    <li>Various Workshops on Journalism & Communication</li>
+    <li>Master’s in Media, Culture & Society (ongoing) – Pantheon-Assas University</li>
+    <li>Bachelor's Degree in Literature & Media – Sorbonne University</li>
+    <li>Advanced Diploma in Music Studies (Guitar and Music Theory) – Conservatoire Darius Milhaud</li>
   </ul>
 </div>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 HANA-LISA H.
+</footer>
 
 <script>
 // ANIMATION AU SCROLL

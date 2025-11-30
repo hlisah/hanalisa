@@ -88,7 +88,17 @@ html, body {
   margin-top:8px;
   color:#444;
   font-style:italic;
+  margin-bottom:20px;
 }
+.vertical-bar {
+  width:80px;
+  height:4px;
+  background:#1b4d3e;
+  margin:15px auto 25px auto;
+  border-radius:2px;
+}
+
+/* Discover */
 .discover {
   display:inline-block;
   margin-top:20px;
@@ -98,11 +108,28 @@ html, body {
   text-decoration:none;
   color:#1b4d3e;
   font-weight:600;
+  cursor:pointer;
   transition:0.3s;
 }
 .discover:hover {
   background:#1b4d3e;
   color:#fff;
+}
+
+/* ===== REVEAL CONTENT ===== */
+#revealContainer {
+  overflow:hidden;
+  height:0;
+  transition: height 0.8s ease;
+}
+.cinematic {
+  opacity:0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.cinematic.show {
+  opacity:1;
+  transform: translateY(0);
 }
 
 /* ===== MEDIA SECTION ===== */
@@ -113,7 +140,6 @@ html, body {
   flex-direction:column;
   align-items:flex-start;
 }
-
 .media-title {
   font-size:22px;
   font-weight:600;
@@ -144,7 +170,6 @@ html, body {
 .media-title.open::after {
   transform:rotate(180deg);
 }
-
 .media-content {
   display:none;
   margin-top:15px;
@@ -153,7 +178,6 @@ html, body {
   position:relative;
   padding-left:5px;
 }
-
 .media-block .media-item {
   font-size:16px;
   margin:10px 0;
@@ -164,7 +188,6 @@ html, body {
   color:#1b4d3e;
   padding-left:4px;
 }
-
 .media-info {
   position:absolute;
   left:150px;
@@ -280,67 +303,16 @@ html, body {
 .carousel-btn.left { left:-35px; }
 .carousel-btn.right { right:-35px; }
 
-/* ===== MOBILE FIXES ===== */
-@media (max-width: 600px) {
-
-  /* NAV */
-  .nav-sections {
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 20px 0;
-  }
-  .nav-sections a {
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-
-  /* VIDEO */
-  .video-band {
-    height: 180px;
-  }
-
-  /* INTRO */
-  .typewriter {
-    font-size: 30px;
-  }
-  .slogan { font-size: 18px; }
-  .quote { font-size: 16px; }
-
-  /* MEDIA SECTION */
-  .media-content {
-    flex-direction: column;
-  }
-  .media-info {
-    position: static;
-    width: 100%;
-    margin-top: 15px;
-  }
-
-  /* SKETCHES */
-  .sketches-bg {
-    flex-direction: column;
-    gap: 30px;
-  }
-  .sketch {
-    width: 60%;
-    margin: 0 auto;
-  }
-
-  /* CAROUSEL */
-  .carousel-container {
-    width: 100%;
-  }
-  .carousel-inner {
-    flex-direction: column;
-    transform: none !important;
-  }
-  .carousel-item {
-    width: 70%;
-    margin: 0 auto 20px auto;
-  }
-  .carousel-btn {
-    display: none;
-  }
+/* ===== FOOTER ===== */
+footer {
+  width:100%;
+  text-align:center;
+  font-size:14px;
+  color:#555;
+  padding:20px 0;
+  border-top:1px solid #1b4d3e;
+  background:#fafafa;
+  margin-top:40px;
 }
 </style>
 </head>
@@ -364,81 +336,92 @@ html, body {
 <!-- INTRO -->
 <div class="intro">
   <h1 id="typewriter" class="typewriter"></h1>
-  <div class="slogan">Welcome! I’m glad you’re here.</div>
-  <div class="quote">“Investigate, understand, communicate.”</div>
-  <a href="about.html" class="discover">Discover More</a>
+  <div class="vertical-bar"></div>
+  <div class="slogan">I write.</div>
+  <div class="quote">“I could feel that Notre-Dame, Flaubert or Truffaut were familiar to me, and yet, through a strange accident of history, they became my heritage.” 
+    Leïla Slimani, The Scent of Flowers at Night</div>
+  <span class="discover" id="discoverBtn">Discover More</span>
 </div>
 
-<!-- MEDIA SECTION -->
-<div class="media-section">
-  <div class="media-title" id="mediaTitle">3 Medias to Know Me</div>
-  <div class="media-content" id="mediaContent">
-    <div class="media-block">
-      <div class="media-item" data-target="movie">Movie</div>
-      <div class="media-item" data-target="book">Book</div>
-      <div class="media-item" data-target="report">Reportage</div>
+<!-- REVEAL CONTENT -->
+<div id="revealContainer">
+  <div id="mainContent">
+    <!-- MEDIA SECTION -->
+    <div class="media-section cinematic">
+      <div class="media-title" id="mediaTitle">3 Medias to Know Me</div>
+      <div class="media-content" id="mediaContent">
+        <div class="media-block">
+          <div class="media-item" data-target="movie">Movie</div>
+          <div class="media-item" data-target="book">Book</div>
+          <div class="media-item" data-target="report">Reportage</div>
+        </div>
+        <div class="media-info" id="mediaInfo">
+          <img src="" id="mediaImg" alt="">
+          <p id="mediaText"></p>
+        </div>
+      </div>
     </div>
-    <div class="media-info" id="mediaInfo">
-      <img src="" id="mediaImg" alt="">
-      <p id="mediaText"></p>
+
+    <!-- SKETCHES -->
+    <div class="sketches-bg cinematic">
+      <div>
+        <img src="hugo.jpg" class="sketch" alt="Hugo" data-description="Victor Hugo showed me how words can move the world and shaped my love for literature.">
+        <div class="sketch-description"></div>
+      </div>
+      <div>
+        <img src="james.jpg" class="sketch" alt="James" data-description="Kery James reminds me how words can empower and resonate through music.">
+        <div class="sketch-description"></div>
+      </div>
+      <div>
+        <img src="shafak.jpg" class="sketch" alt="Shafak" data-description="Elif Shafak moves me through her writing, it's a spiritual, multicultural journey I feel deeply.">
+        <div class="sketch-description"></div>
+      </div>
+    </div>
+
+    <!-- CAROUSEL -->
+    <div class="carousel-container cinematic">
+      <div class="carousel-title">Latest Articles</div>
+      <div class="carousel-wrapper">
+        <div class="carousel-inner" id="carouselInner">
+          <a href="articlehiphop.html" class="carousel-item">
+            <img src="hiphopbanner.jpg" alt="Hip-Hop">
+            <h3>Hip-Hop is About Literature</h3>
+          </a>
+          <a href="interview.html" class="carousel-item">
+            <img src="interview.jpg" alt="Interview">
+            <h3>Interview Insights</h3>
+          </a>
+          <a href="diome.html" class="carousel-item">
+            <img src="diomebanner.jpg" alt="Diome">
+            <h3>Fatou Diome: Literary Analysis</h3>
+          </a>
+          <a href="economy.html" class="carousel-item">
+            <img src="economyminia.png" alt="Economy">
+            <h3>Economy & Society</h3>
+          </a>
+          <a href="barthes.html" class="carousel-item">
+            <img src="barthesbanner.jpg" alt="Barthes">
+            <h3>Barthes and Semiotics</h3>
+          </a>
+        </div>
+      </div>
+
+      <button class="carousel-btn left" id="carouselLeft">‹</button>
+      <button class="carousel-btn right" id="carouselRight">›</button>
     </div>
   </div>
 </div>
 
-<!-- SKETCHES -->
-<div class="sketches-bg">
-  <div>
-    <img src="hugo.jpg" class="sketch" alt="Hugo" data-description="Hugo represents literary depth.">
-    <div class="sketch-description"></div>
-  </div>
-  <div>
-    <img src="james.jpg" class="sketch" alt="James" data-description="James inspires my curiosity.">
-    <div class="sketch-description"></div>
-  </div>
-  <div>
-    <img src="shafak.jpg" class="sketch" alt="Shafak" data-description="Shafak symbolizes multicultural insight.">
-    <div class="sketch-description"></div>
-  </div>
-</div>
-
-<!-- CAROUSEL -->
-<div class="carousel-container">
-  <div class="carousel-title">Latest Articles</div>
-  <div class="carousel-wrapper">
-    <div class="carousel-inner" id="carouselInner">
-      <a href="articlehiphop.html" class="carousel-item">
-        <img src="hiphopbanner.jpg" alt="Hip-Hop">
-        <h3>Hip-Hop is About Literature</h3>
-      </a>
-      <a href="interview.html" class="carousel-item">
-        <img src="interview.jpg" alt="Interview">
-        <h3>Interview Insights</h3>
-      </a>
-      <a href="diome.html" class="carousel-item">
-        <img src="diomebanner.jpg" alt="Diome">
-        <h3>Fatou Diome: Literary Analysis</h3>
-      </a>
-      <a href="economy.html" class="carousel-item">
-        <img src="economyminia.png" alt="Economy">
-        <h3>Economy & Society</h3>
-      </a>
-      <a href="barthes.html" class="carousel-item">
-        <img src="barthesbanner.jpg" alt="Barthes">
-        <h3>Barthes and Semiotics</h3>
-      </a>
-    </div>
-  </div>
-
-  <button class="carousel-btn left" id="carouselLeft">‹</button>
-  <button class="carousel-btn right" id="carouselRight">›</button>
-</div>
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 HANA-LISA H.
+</footer>
 
 <script>
-// TYPEWRITER EFFECT
+// TYPEWRITER
 const text = "HANA-LISA H.";
 const target = document.getElementById('typewriter');
 let index = 0;
-
 function typeWriter() {
   if(index < text.length){
     target.textContent += text.charAt(index);
@@ -448,6 +431,26 @@ function typeWriter() {
 }
 typeWriter();
 target.style.animation = "blinkCursor 0.7s step-end infinite";
+
+// DISCOVER MORE - toggle avec effet cinématique
+const discoverBtn = document.getElementById('discoverBtn');
+const revealContainer = document.getElementById('revealContainer');
+const cinematicElems = document.querySelectorAll('#mainContent .cinematic');
+
+let open = false;
+discoverBtn.addEventListener('click', () => {
+  const contentHeight = document.getElementById('mainContent').scrollHeight;
+  if(!open){
+    revealContainer.style.height = contentHeight + 'px';
+    cinematicElems.forEach((el, i) => {
+      setTimeout(()=> el.classList.add('show'), i*150);
+    });
+  } else {
+    revealContainer.style.height = '0';
+    cinematicElems.forEach(el => el.classList.remove('show'));
+  }
+  open = !open;
+});
 
 // SKETCHES
 const sketches = document.querySelectorAll('.sketch');
@@ -470,42 +473,42 @@ document.addEventListener('click', () => {
 const mediaTitle = document.getElementById('mediaTitle');
 const mediaContent = document.getElementById('mediaContent');
 mediaTitle.addEventListener('click', ()=> {
-  const open = mediaContent.style.display === 'flex';
-  mediaContent.style.display = open ? 'none' : 'flex';
-  mediaTitle.classList.toggle('open', !open);
+  const openMedia = mediaContent.style.display === 'flex';
+  mediaContent.style.display = openMedia ? 'none' : 'flex';
+  mediaTitle.classList.toggle('open', !openMedia);
 });
 const mediaItems = document.querySelectorAll('.media-item');
 const mediaInfo = document.getElementById('mediaInfo');
 const mediaImg = document.getElementById('mediaImg');
 const mediaText = document.getElementById('mediaText');
-let openMedia = null;
+let openMediaItem = null;
 const mediaData = {
-  movie: { img:'papicha.jpg', text:'“Papicha” — M. Meddour The courage to express and create under constraint.' },
-  book: { img:'sartre.jpg', text:'“No Exit” — JP. Sartre Stories of resilience and hope amid chaos.' },
- report: { img:'quai.jpeg', text:'“Le Quai de Ouistreham” — F. Aubenas,The firt reportage that strikes me' }
+  movie: { img:'papicha.jpg', text:'“Papicha” — Young women, fearless and free, in Algerias darkest era.' },
+  book: { img:'sartre.jpg', text:'“No Exit” — Endlessy interpretable, unforgettable play.' },
+  report: { img:'quai.jpeg', text:'“Le Quai de Ouistreham” — The immersive reporting I dream of, truthful, vivid, unforgettable.' }
 };
 mediaItems.forEach(item => {
   item.addEventListener('click', e => {
     e.stopPropagation();
     const key = item.dataset.target;
-    if(openMedia === key){
+    if(openMediaItem === key){
       mediaInfo.classList.remove('show');
       setTimeout(()=> mediaInfo.style.display='none',250);
-      openMedia=null;
+      openMediaItem=null;
       return;
     }
     mediaImg.src = mediaData[key].img;
     mediaText.textContent = mediaData[key].text;
     mediaInfo.style.display='block';
     requestAnimationFrame(()=> mediaInfo.classList.add('show'));
-    openMedia = key;
+    openMediaItem = key;
   });
 });
 document.addEventListener('click', ()=> {
-  if(openMedia){
+  if(openMediaItem){
     mediaInfo.classList.remove('show');
     setTimeout(()=> mediaInfo.style.display='none',250);
-    openMedia=null;
+    openMediaItem=null;
   }
 });
 
@@ -530,4 +533,3 @@ btnLeft.addEventListener('click', () => {
 
 </body>
 </html>
-
