@@ -10,15 +10,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100;300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
-/* ===== VARIABLES (COHERENCE SITE) ===== */
+/* ===== VARIABLES ===== */
 :root {
-  --bg: #050505;       /* Noir profond (identique Work) */
-  --text: #eaddca;     /* Beige coquille d'œuf */
+  --bg: #050505;       /* Noir profond */
+  --text: #eaddca;     /* Beige papier */
   --accent: #ffffff;   /* Blanc pur */
-  --line: rgba(234, 221, 202, 0.15); /* Lignes subtiles */
+  --line: rgba(234, 221, 202, 0.15);
 }
 
-* { box-sizing: border-box; cursor: none; /* Curseur custom */ }
+* { box-sizing: border-box; cursor: none; }
 
 html, body {
   margin: 0; padding: 0;
@@ -29,23 +29,19 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* CUSTOM CURSOR */
+/* CURSOR */
 .cursor-dot, .cursor-outline {
   position: fixed; top: 0; left: 0;
   transform: translate(-50%, -50%);
   border-radius: 50%; z-index: 9999; pointer-events: none;
 }
-.cursor-dot { width: 8px; height: 8px; background-color: var(--accent); }
+.cursor-dot { width: 6px; height: 6px; background-color: var(--accent); }
 .cursor-outline {
   width: 40px; height: 40px;
-  border: 1px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.3);
   transition: width 0.2s, height 0.2s, background-color 0.2s;
 }
-body.hovering .cursor-outline {
-  width: 60px; height: 60px;
-  background-color: rgba(255,255,255,0.1);
-  border-color: transparent;
-}
+body.hovering .cursor-outline { width: 60px; height: 60px; background: rgba(255,255,255,0.05); border-color: transparent; }
 
 /* GRAIN */
 .noise {
@@ -56,7 +52,7 @@ body.hovering .cursor-outline {
 
 /* NAV */
 nav {
-  position: fixed; top: 30px; right: 40px; z-index: 100;
+  position: fixed; top: 40px; right: 40px; z-index: 100;
   mix-blend-mode: exclusion;
 }
 nav a {
@@ -68,10 +64,10 @@ nav a {
 }
 nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
 
-/* ===== HERO VIDEO HEADER ===== */
+/* ===== HERO HEADER ===== */
 .hero-header {
   position: relative;
-  height: 80vh; /* Un peu plus grand pour l'impact */
+  height: 85vh;
   overflow: hidden;
   display: flex; justify-content: center; align-items: center;
   border-bottom: 1px solid var(--line);
@@ -80,14 +76,13 @@ nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
 .hero-video {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   object-fit: cover;
-  /* COULEUR : Juste un peu assombrie pour que le titre "outline" ressorte */
   filter: brightness(0.65); 
 }
 
-/* TITRE INCHANGÉ (Outline Style) */
 .hero-title {
   position: relative; z-index: 10;
-  font-size: clamp(80px, 15vw, 220px);
+  font-family: 'Fraunces', serif;
+  font-size: clamp(60px, 12vw, 200px);
   font-weight: 100;
   text-transform: uppercase;
   letter-spacing: -4px;
@@ -95,40 +90,46 @@ nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
   -webkit-text-stroke: 2px rgba(255,255,255,0.85);
   mix-blend-mode: overlay;
   text-align: center;
-  line-height: 0.8;
+  line-height: 0.9;
 }
 
 /* ===== MAGAZINE SPREAD (BIO) ===== */
-.container { max-width: 1300px; margin: 0 auto; padding: 120px 20px; }
+.container { max-width: 1400px; margin: 0 auto; padding: 140px 20px; }
 
 .bio-spread {
-  display: grid; grid-template-columns: 1fr 1.2fr; /* Image à gauche, texte à droite */
-  gap: 80px; align-items: start;
-  margin-bottom: 150px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 80px; 
+  /* CHANGEMENT ICI : center au lieu de start pour centrer l'image */
+  align-items: center; 
+  margin-bottom: 180px;
 }
 
 .bio-image-wrapper {
   position: relative;
-  /* Cadre fin pour faire "photo d'art" */
-  padding: 10px;
   border: 1px solid var(--line); 
+  padding: 10px; 
+  width: 100%;
+  max-width: 320px; 
+  margin: 0 auto;
 }
 
 .bio-image {
   width: 100%; height: auto;
   display: block;
-  /* COULEUR : Naturelle */
-  filter: contrast(1.05);
+  object-fit: cover;
+  filter: contrast(1.05); 
 }
 
 .bio-meta {
   margin-top: 15px;
   display: flex; justify-content: space-between;
   font-family: 'Space Mono'; font-size: 10px; text-transform: uppercase; color: #666;
+  letter-spacing: 1px;
 }
 
 .bio-content {
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .bio-label {
@@ -137,15 +138,14 @@ nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
 }
 
 .bio-text {
-  font-size: 22px; line-height: 1.6; font-weight: 300; text-align: justify;
+  font-size: 20px; line-height: 1.7; font-weight: 300; text-align: justify;
   color: #ccc;
 }
-.bio-text p { margin-bottom: 30px; }
+.bio-text p { margin-bottom: 25px; }
 
-/* Lettrine stylée */
 .drop-cap {
-  float: left; font-size: 85px; line-height: 0.7;
-  margin-right: 15px; margin-top: 5px;
+  float: left; font-size: 80px; line-height: 0.8;
+  margin-right: 20px; margin-top: 5px;
   font-family: 'Fraunces', serif; color: var(--accent);
 }
 
@@ -154,62 +154,82 @@ nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
   border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 
-/* Massive Quote */
+/* Quote */
 .big-quote {
-  font-size: clamp(30px, 4vw, 50px); line-height: 1.2;
+  font-size: clamp(28px, 4vw, 42px); line-height: 1.4;
   font-weight: 300; font-style: italic; text-align: center;
-  margin: 100px auto 150px auto; max-width: 900px;
+  margin: 100px auto 180px auto; max-width: 900px;
   color: var(--accent);
   border-left: 1px solid var(--line); padding-left: 40px;
 }
-
-/* ===== CREDITS SECTION (LIST STYLE) ===== */
-.credits-section {
-  border-top: 1px solid var(--line);
+/* Ajout de style pour l'auteur de la citation */
+.quote-author {
+    display: block; font-size: 14px; margin-top: 20px; color: #666; 
+    font-family: 'Space Mono'; text-transform: uppercase; letter-spacing: 2px; font-style: normal;
 }
+
+/* ===== CREDITS SECTION (CV) ===== */
+.credits-section { border-top: 1px solid var(--line); }
 
 .credits-header {
   font-family: 'Space Mono'; font-size: 12px; text-transform: uppercase;
-  letter-spacing: 2px; margin: 60px 0 40px 0; display: block; 
-  color: #666;
+  letter-spacing: 2px; margin: 80px 0 40px 0; display: block; 
+  color: var(--accent);
 }
 
-/* On utilise une liste fluide plutôt que des blocs */
 .credit-row {
-  display: grid; grid-template-columns: 1fr 2fr 3fr; /* Date | Rôle | Description */
-  padding: 30px 0;
+  display: grid; grid-template-columns: 1.2fr 2fr 3fr;
+  padding: 40px 0;
   border-bottom: 1px solid var(--line);
   align-items: baseline;
   transition: all 0.3s;
 }
 
-.credit-row:hover {
-  background: rgba(255,255,255,0.03);
-  padding-left: 20px; /* Petit mouvement interactif */
+.credit-row:hover { background: rgba(255,255,255,0.03); padding-left: 20px; }
+
+.c-date { font-family: 'Space Mono'; font-size: 12px; color: #666; }
+.c-role { font-size: 22px; color: var(--text); font-weight: 400; }
+.c-desc { font-family: 'Space Mono'; font-size: 12px; color: #999; line-height: 1.7; }
+.c-desc strong { color: #fff; font-weight: normal; border-bottom: 1px solid #444; }
+
+/* ===== SKILLS SECTION ===== */
+.skills-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 40px; margin-bottom: 100px;
+  border-bottom: 1px solid var(--line); padding-bottom: 80px;
 }
 
-.c-date {
-  font-family: 'Space Mono'; font-size: 12px; color: #666;
+.skill-col h3 {
+  font-family: 'Space Mono'; font-size: 12px; text-transform: uppercase;
+  letter-spacing: 2px; color: #666; margin-bottom: 30px;
 }
-.c-role {
-  font-size: 20px; color: var(--accent); font-weight: 400;
+
+.skill-item {
+  display: block; font-family: 'Fraunces', serif; font-size: 18px;
+  color: var(--text); margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 5px;
 }
-.c-desc {
-  font-family: 'Space Mono'; font-size: 12px; color: #999; line-height: 1.5;
+.skill-detail {
+  font-family: 'Space Mono'; font-size: 11px; color: #888; display: block; margin-top: 2px;
 }
 
 /* FOOTER */
 footer {
-  text-align: center; padding: 100px 0 40px 0; font-family: 'Space Mono';
-  font-size: 11px; color: #444; text-transform: uppercase; letter-spacing: 2px;
+  text-align: center; padding: 100px 0 60px 0;
+  font-family: 'Space Mono'; font-size: 10px; color: #444;
+  text-transform: uppercase; letter-spacing: 2px;
 }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .hero-title { font-size: 60px; -webkit-text-stroke: 1px #fff; }
-  .bio-spread { grid-template-columns: 1fr; gap: 40px; }
+  .hero-title { font-size: 60px; letter-spacing: -2px; }
+  .bio-spread { grid-template-columns: 1fr; gap: 60px; }
+  .bio-image-wrapper { max-width: 100%; } 
   .credit-row { grid-template-columns: 1fr; gap: 10px; padding: 40px 0; }
-  .c-desc { margin-top: 5px; color: #777; }
+  .c-role { margin-bottom: 5px; }
+  .c-desc { color: #777; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .big-quote { padding-left: 0; border: none; }
   .cursor-dot, .cursor-outline { display: none; }
 }
 </style>
@@ -242,8 +262,8 @@ footer {
     <div class="bio-image-wrapper">
       <img src="hana.jpg" alt="Hana-Lisa" class="bio-image">
       <div class="bio-meta">
-        <span>Paris, FR</span>
-        <span>Portrait 2025</span>
+        <span>... FR</span>
+        <span>2025</span>
       </div>
     </div>
     
@@ -251,75 +271,120 @@ footer {
       <span class="bio-label">Editor's Letter</span>
       <div class="bio-text">
         <p>
-          <span class="drop-cap">I</span>’m Hana-Lisa. At 21, I navigate the space between rigorous academia and creative intuition. Currently pursuing a Master’s in <span class="highlight">Media, Culture & Society at Pantheon-Assas</span>, my background in literature at Sorbonne shapes my approach: storytelling with clarity and critical insight.
+          <span class="drop-cap">H</span>i ! I’m Hana-Lisa, I’m 21, and I currently pursuing a Master’s in <span class="highlight">Media, Culture & Society at Pantheon-Assas University</span> after earning a degree in Literature and Media at Sorbonne University. My studies gave me both rigorous writing skills and a deep understanding of communication sciences, shaping my approach to storytelling with clarity and critical insight.
         </p>
         <p>
-          My journey into journalism revealed a tension between the artistic expression I value and the neutral style of mainstream press. Experiences at <em>Elle Magazine</em> and <em>La Tribune</em> solidified my interest in economic reporting but also my refusal to compromise on style.
+          My journey into journalism has been both enriching and at times frustrating. Through multiple internships, including with the former chief editor of <em>Elle Magazine</em> and within the digital editorial chief of <em>La Tribune</em>, I discovered the realities of traditional media. I have been introduced to economic reporting, which now truly fascinates me.
         </p>
         <p>
-          I am building an independent approach, where writing remains vibrant, meaningful, and unapologetically intellectual.
+          Yet, I also faced discouragement: I was advised against pursuing classical journalism because of my literary writing style and diverse skills. This highlighted a tension between the artistic expression I value and the neutral, “flat” style expected in mainstream press, a compromise I am unwilling to make, especially after three years dedicated to literature.
+        </p>
+        <p>
+          These experiences convinced me that I want to build an independent media outlet, one that engages young audiences, makes complex topics like economy and politics accessible, and allows writing to remain vibrant and meaningful. On this portfolio, you will find my academic work and many other projects reflecting my curiosity, commitment, and personal approach to journalism.
         </p>
       </div>
     </div>
   </div>
 
   <div class="big-quote fade-up">
-    “I could feel that Notre-Dame, Flaubert or Truffaut were familiar to me... they became my heritage.”
+    “There is only one way to fail, and that is to quit before having succeeded.”
+    <span class="quote-author">— Georges Clémenceau</span>
   </div>
 
   <div class="credits-section fade-up">
-    <span class="credits-header">Credits / Experience</span>
+    <span class="credits-header">01. Selected Experience</span>
     
     <div class="credit-row hover-trigger">
-      <span class="c-date">2025 — PRESENT</span>
-      <span class="c-role">Media Creator & Journalist</span>
-      <span class="c-desc">Collaboration with La Tribune. Co-created a youth-focused economic media platform. Making complex market trends accessible to Gen Z through sharp analysis.</span>
+      <span class="c-date">SEPT 2025 — ONGOING</span>
+      <span class="c-role">Strategic Collaborator</span>
+      <span class="c-desc">
+        <strong>Start In Assas.</strong> Marketing & Communication dept. Supporting student entrepreneurship events and marketing initiatives at Paris-Panthéon-Assas.
+      </span>
     </div>
 
     <div class="credit-row hover-trigger">
-      <span class="c-date">2024</span>
+      <span class="c-date">MAY 2025 — AUG 2025</span>
+      <span class="c-role">Co-Creator & Community Builder</span>
+      <span class="c-desc">
+        <strong>Les Stars de l'Éco.</strong> Co-created a digital media for economic popularization (TikTok/Insta). Content strategy, web design, and AI tool implementation.
+      </span>
+    </div>
+
+    <div class="credit-row hover-trigger">
+      <span class="c-date">OCT 2024 — DEC 2024</span>
       <span class="c-role">Communication Assistant</span>
-      <span class="c-desc">Actually Agency. Worked directly with former Editor-in-Chief of Elle Magazine on brand strategy and high-level editorial content.</span>
+      <span class="c-desc">
+        <strong>Actually Agency.</strong> Right hand to the former Editor-in-Chief of ELLE Magazine. Managed social media planning, audience relations, and event optimization.
+      </span>
     </div>
 
     <div class="credit-row hover-trigger">
-      <span class="c-date">2025</span>
-      <span class="c-role">Marketing Collaborator</span>
-      <span class="c-desc">Start in Assas. Supporting student entrepreneurship events and marketing initiatives.</span>
-    </div>
-
-    <div class="credit-row hover-trigger">
-      <span class="c-date">2022 — PRESENT</span>
+      <span class="c-date">2023 — PRESENT</span>
       <span class="c-role">Music Teacher</span>
-      <span class="c-desc">Freelance. Teaching Guitar and Music Theory. Transmission of artistic sensibility.</span>
+      <span class="c-desc">
+        <strong>Acadomia & Freelance.</strong> Personalized pedagogy in guitar and music theory. Transmission of artistic discipline and sensibility.
+      </span>
     </div>
 
-    <span class="credits-header" style="margin-top: 80px;">Credits / Education</span>
+    <span class="credits-header">02. Education & Academia</span>
 
     <div class="credit-row hover-trigger">
-      <span class="c-date">ONGOING</span>
-      <span class="c-role">Master’s Media & Society</span>
-      <span class="c-desc">Pantheon-Assas University. Sociology of media, communication strategies, and cultural dynamics.</span>
-    </div>
-
-    <div class="credit-row hover-trigger">
-      <span class="c-date">GRADUATED</span>
-      <span class="c-role">Bachelor Literature & Media</span>
-      <span class="c-desc">Sorbonne University. Classical literature, semiotics, and history of media.</span>
+      <span class="c-date">2025 — 2027</span>
+      <span class="c-role">Master in Information Sciences</span>
+      <span class="c-desc">
+        <strong>Paris-Panthéon-Assas University.</strong> Major in Media, Culture, and Society. Focus on sociology of media and communication strategies.
+      </span>
     </div>
 
     <div class="credit-row hover-trigger">
-      <span class="c-date">GRADUATED</span>
-      <span class="c-role">Advanced Music Diploma</span>
-      <span class="c-desc">Conservatoire Darius Milhaud. Guitar and Music Theory specialization.</span>
+      <span class="c-date">2022 — 2025</span>
+      <span class="c-role">Bachelor in Literature & Media</span>
+      <span class="c-desc">
+        <strong>Sorbonne University.</strong> Literature, Publishing, Media & Audiovisual. Specialization in journalism and information sciences.
+      </span>
     </div>
 
+    <div class="credit-row hover-trigger">
+      <span class="c-date">2008 — 2021</span>
+      <span class="c-role">Certificate of Musical Studies (CEM)</span>
+      <span class="c-desc">
+        <strong>Conservatoire Darius Milhaud.</strong> Music Theory, Guitar, and Jazz Guitar.
+      </span>
+    </div>
+
+  </div>
+
+  <div class="credits-section fade-up">
+    <span class="credits-header">03. Skillset & Proficiency</span>
+    
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h3>Digital & Tech</h3>
+        <span class="skill-item">Web Development<span class="skill-detail">HTML, CSS, Site Management</span></span>
+        <span class="skill-item">Generative AI<span class="skill-detail">Midjourney, ChatGPT, Prompting</span></span>
+        <span class="skill-item">Video Editing<span class="skill-detail">CapCut, iMovie, Social Content</span></span>
+      </div>
+
+      <div class="skill-col">
+        <h3>Editorial & Strategy</h3>
+        <span class="skill-item">Content Strategy<span class="skill-detail">Social Media Planning, Community Building</span></span>
+        <span class="skill-item">Journalism<span class="skill-detail">Interviews, Reporting, Synthesis</span></span>
+        <span class="skill-item">Analysis<span class="skill-detail">Economic Popularization, Research</span></span>
+      </div>
+
+      <div class="skill-col">
+        <h3>Languages</h3>
+        <span class="skill-item">French<span class="skill-detail">Native / Literary</span></span>
+        <span class="skill-item">English<span class="skill-detail">B2+ / Professional Working</span></span>
+        <span class="skill-item">German<span class="skill-detail">B1 / Intermediate</span></span>
+      </div>
+    </div>
   </div>
 
 </div>
 
 <footer>
-  HANA-LISA H. — PARIS © 2025
+  HANA-LISA H.© 2025
 </footer>
 
 <script>

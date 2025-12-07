@@ -10,12 +10,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;400;500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
-/* ===== VARIABLES (MONOCHROME CHIC) ===== */
+/* ===== VARIABLES ===== */
 :root {
   --bg: #050505;       /* Noir profond */
   --text: #eaddca;     /* Beige papier */
   --accent: #ffffff;   /* Blanc pur */
-  --line: rgba(234, 221, 202, 0.15); /* Lignes très fines */
+  --line: rgba(234, 221, 202, 0.15);
 }
 
 * { box-sizing: border-box; cursor: none; }
@@ -26,7 +26,7 @@ html, body {
   color: var(--text);
   font-family: 'Fraunces', serif;
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+  height: 100%;
 }
 
 /* CURSOR */
@@ -85,17 +85,17 @@ nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
   font-size: clamp(60px, 12vw, 150px);
   margin: 0; 
   font-weight: 300;
-  font-style: normal; /* DROIT (Pas italique) */
+  font-style: normal; /* DROIT */
   letter-spacing: -2px;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.9); /* Outline fin */
+  -webkit-text-stroke: 1px rgba(255,255,255,0.9);
   mix-blend-mode: overlay;
 }
 
 /* ===== LAYOUT ===== */
 .content-wrapper {
   max-width: 1200px; margin: 0 auto; padding: 100px 20px;
-  display: grid; grid-template-columns: 1fr 1.5fr; /* Info à gauche plus étroite */
+  display: grid; grid-template-columns: 1fr 1.5fr; 
   gap: 100px;
 }
 
@@ -129,7 +129,7 @@ nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
 .social-list a:last-child { border-bottom: 1px solid var(--line); }
 
 
-/* DROITE : FORMULAIRE CLASSIQUE & BEAU */
+/* DROITE : FORMULAIRE BASIQUE & PRO */
 .form-col {
   padding-top: 10px;
 }
@@ -139,49 +139,49 @@ nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
 }
 
 .clean-form {
+  display: flex; flex-direction: column; gap: 30px; /* Espacement simple */
+}
+
+.form-group {
   display: flex; flex-direction: column;
 }
 
-.form-row {
-  position: relative;
-  padding: 30px 0;
-  border-bottom: 1px solid var(--line);
-  display: flex; flex-direction: column;
-}
-
-.form-row label {
+.form-group label {
   font-family: 'Space Mono'; font-size: 11px; text-transform: uppercase; color: #666;
   margin-bottom: 10px; letter-spacing: 1px;
 }
 
 .clean-input, .clean-textarea {
-  background: transparent; border: none; outline: none;
-  font-family: 'Fraunces', serif; font-size: 22px; color: var(--text);
+  background: transparent; 
+  border: 1px solid var(--line); /* Bordure complète plus classique */
+  color: var(--text);
+  font-family: 'Space Mono'; font-size: 14px; /* Police technique pour la saisie */
+  padding: 15px;
   width: 100%; transition: 0.3s;
+  border-radius: 0; /* Carré pour le style pro */
 }
 
 .clean-input:focus, .clean-textarea:focus {
-  color: var(--accent);
+  border-color: var(--accent); outline: none;
+  background: rgba(255,255,255,0.02);
 }
 
 .clean-textarea {
-  resize: none; min-height: 80px;
-}
-
-/* Bouton aligné à gauche */
-.submit-row {
-  padding-top: 40px;
+  resize: vertical; min-height: 120px;
 }
 
 .submit-btn {
-  background: transparent; border: 1px solid var(--line);
-  color: var(--text);
+  background: var(--text); 
+  color: var(--bg);
   font-family: 'Space Mono'; font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
   padding: 15px 40px;
-  cursor: pointer; transition: 0.4s;
+  border: none; cursor: pointer; transition: 0.3s;
+  align-self: flex-start;
+  margin-top: 10px;
 }
+
 .submit-btn:hover {
-  border-color: var(--accent); color: var(--bg); background: var(--accent);
+  background: var(--accent);
 }
 
 /* FOOTER */
@@ -242,28 +242,26 @@ footer {
   </div>
 
   <div class="form-col">
-    <div class="form-intro">Start a conversation</div>
+    <div class="form-intro">Send a message</div>
 
     <form class="clean-form">
       
-      <div class="form-row">
-        <label>01. Name</label>
-        <input type="text" class="clean-input hover-trigger" placeholder="What is your name?" required>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="clean-input hover-trigger" required>
       </div>
 
-      <div class="form-row">
-        <label>02. Email</label>
-        <input type="email" class="clean-input hover-trigger" placeholder="Where can I reach you?" required>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="clean-input hover-trigger" required>
       </div>
 
-      <div class="form-row">
-        <label>03. Message</label>
-        <textarea class="clean-textarea hover-trigger" placeholder="Tell me about your project..." required></textarea>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea class="clean-textarea hover-trigger" required></textarea>
       </div>
 
-      <div class="submit-row">
-        <button type="submit" class="submit-btn hover-trigger">Send Request</button>
-      </div>
+      <button type="submit" class="submit-btn hover-trigger">Submit</button>
 
     </form>
   </div>
@@ -271,7 +269,7 @@ footer {
 </div>
 
 <footer>
-  HANA-LISA H. — PARIS
+  HANA-LISA H.© 2025
 </footer>
 
 <script>
