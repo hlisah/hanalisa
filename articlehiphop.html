@@ -3,163 +3,197 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hip-Hop is about Literature — HANA-LISA Portfolio</title>
+<title>HIP-HOP IS LITERATURE // HANA-LISA</title>
 
 <meta name="description" content="Explore why hip-hop is literature: from work songs and jazz to Tupac and Kendrick Lamar. Analysis of rhythm, poetry, and cultural history.">
 <meta name="keywords" content="Hip-Hop, Literature, Tupac, Kendrick Lamar, Jazz, Blues, Poetry, Rap, Rhythm and Poetry, Black Music, French Literature, Sorbonne, Ella Fitzgerald, Billie Holiday, Charlie Parker">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100;300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
 <style>
-@font-face {
-  font-family: 'Fraunces';
-  src: url('Fraunces.ttf') format('truetype');
-  font-display: swap;
+/* ===== AESTHETIC: DARK MONOCHROME ===== */
+:root {
+  --bg: #0f0f0f;       /* Noir profond */
+  --text: #eaddca;     /* Beige coquille d'œuf */
+  --accent: #ffffff;   /* Blanc pur */
+  --line: rgba(234, 221, 202, 0.15);
 }
 
-/* GLOBAL */
-body {
-  margin:0;
-  padding:0;
-  font-family: 'Georgia', serif;
-  background:#fff;
-  color:#111;
-  line-height:1.6;
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Fraunces', serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* GRAIN */
+.noise {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 999; opacity: 0.04;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
 }
 
 /* NAV */
-.nav-sections {
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  margin:30px 0;
+nav {
+  position: fixed; top: 30px; right: 40px; z-index: 100;
+  mix-blend-mode: exclusion;
 }
-.nav-sections a {
-  padding:10px 20px;
-  border:2px solid #1b4d3e;
-  border-radius:6px;
-  text-decoration:none;
-  color:#111;
-  font-weight:bold;
-  transition:0.3s;
+nav a {
+  display: block; text-align: right; text-decoration: none;
+  color: #fff; opacity: 0.7;
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 6px; transition: 0.3s;
 }
-.nav-sections a:hover {
-  background:#1b4d3e;
-  color:#fff;
+nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
+
+/* ===== ARTICLE HERO ===== */
+.article-hero {
+  position: relative;
+  width: 100%; height: 60vh;
+  overflow: hidden;
 }
 
-/* HEADER BANNER */
-.header-banner {
-  width:90%;
-  height:300px;
-  margin:0 auto;
-  border-radius:12px;
-  overflow:hidden;
-}
-.header-banner img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.hero-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7) desaturate(0.3); /* Filtre cinématographique */
 }
 
-/* TITLE SECTION */
-.article-header {
-  text-align:center;
-  margin:40px auto 20px auto;
-  width:80%;
-}
-.article-header h1 {
-  font-family:'Fraunces', serif;
-  font-size:clamp(32px,5vw,48px);
-  color:#1b4d3e;
-  margin-bottom:10px;
-  animation:fadeInUp 1.2s ease;
-}
-.article-header .date {
-  font-size:16px;
-  color:#666;
-  margin-bottom:15px;
+/* ===== ARTICLE HEADER ===== */
+.header-content {
+  max-width: 900px; margin: 0 auto; padding: 60px 20px 40px 20px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
 }
 
-/* CONTENT */
-.article-content {
-  width:80%;
-  max-width:900px;
-  margin:50px auto;
-  font-size:18px;
-  font-family:'Georgia', serif;
-}
-.article-content p {
-  margin-bottom:20px;
-}
-.article-content h2 {
-  font-family:'Fraunces', serif;
-  color:#1b4d3e;
-  margin-top:40px;
-  font-size:22px;
-}
-.article-content a {
-  color:#1b4d3e;
-  text-decoration:underline;
-}
-.quote {
-  font-family:'Fraunces', serif;
-  border-left:3px solid #1b4d3e;
-  padding-left:15px;
-  font-style:italic;
-  color:#333;
-  margin:30px 0;
+.article-title {
+  font-size: clamp(40px, 8vw, 80px);
+  font-weight: 300; font-style: italic;
+  line-height: 1.1; margin: 0 0 20px 0;
+  color: var(--accent);
 }
 
-/* CONCLUSION */
+.article-meta {
+  font-family: 'Space Mono', monospace; font-size: 12px;
+  color: #888; text-transform: uppercase; letter-spacing: 2px;
+  display: flex; gap: 20px; justify-content: center;
+}
+
+/* ===== CONTENT BODY ===== */
+.article-body {
+  max-width: 750px; margin: 60px auto; padding: 0 20px;
+  font-size: 20px; font-weight: 300;
+  color: #d0d0d0; /* Gris clair pour la lecture */
+}
+
+.article-body p {
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+/* Headings inside article */
+.article-body h2 {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--accent);
+  margin-top: 60px; margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+/* Links inside article */
+.article-body a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(234, 221, 202, 0.4);
+  transition: 0.3s;
+}
+.article-body a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Blockquotes */
+.quote-box {
+  margin: 50px 0;
+  padding: 0 20px;
+  border-left: 2px solid var(--accent);
+}
+.quote-text {
+  font-size: 28px; font-style: italic; line-height: 1.4;
+  color: var(--accent);
+}
+.quote-author {
+  display: block; margin-top: 15px;
+  font-family: 'Space Mono', monospace; font-size: 12px; color: #888;
+}
+
+/* ===== FOOTER NAV ===== */
 .article-footer {
-  text-align:center;
-  margin:50px auto;
+  text-align: center; margin: 100px 0 60px 0;
+  padding-top: 40px; border-top: 1px solid var(--line);
 }
-.article-footer a {
-  display:inline-block;
-  margin-top:10px;
-  padding:10px 20px;
-  border:2px solid #1b4d3e;
-  border-radius:6px;
-  text-decoration:none;
-  color:#111;
-  font-weight:bold;
-  transition:0.3s;
+
+.back-btn {
+  font-family: 'Space Mono', monospace; font-size: 12px;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--text); text-decoration: none;
+  border: 1px solid var(--line);
+  padding: 15px 30px;
+  transition: 0.3s;
 }
-.article-footer a:hover {
-  background:#1b4d3e;
-  color:#fff;
+.back-btn:hover {
+  background: var(--text); color: var(--bg);
+}
+
+.copyright {
+  display: block; margin-top: 40px;
+  font-family: 'Space Mono'; font-size: 10px; color: #444;
 }
 
 /* ANIMATIONS */
-@keyframes fadeInUp {
-  from {opacity:0; transform:translateY(20px);}
-  to {opacity:1; transform:translateY(0);}
+.fade-up {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<div class="nav-sections">
+<div class="noise"></div>
+
+<nav>
   <a href="index.html">Home</a>
   <a href="work.html">Work</a>
+  <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
+</nav>
+
+<div class="article-hero">
+  <img src="hiphopbanner.png" alt="Hip Hop Banner" class="hero-img">
 </div>
 
-<!-- BANNER -->
-<div class="header-banner">
-  <img src="hiphopbanner.jpg" alt="Hip-Hop is about literature">
+<div class="header-content fade-up">
+  <h1 class="article-title">Hip-Hop is Literature</h1>
+  <div class="article-meta">
+    <span>Nov 10, 2025</span>
+    <span>Analysis</span>
+    <span>Music</span>
+  </div>
 </div>
 
-<!-- HEADER -->
-<div class="article-header">
-  <h1>Hip-Hop is about Literature</h1>
-  <div class="date">November 10, 2025</div>
+<div class="article-body fade-up">
+  
   <p>Does the acronym R.A.P. really mean <a href="https://en.wikipedia.org/wiki/Rhythm_and_poetry" target="_blank">Rhythm and Poetry</a>? Is <a href="https://en.wikipedia.org/wiki/Hip_hop_music" target="_blank">Hip-Hop</a> really that powerful? If you doubt it, you’ve probably never listened closely enough. Words are instruments of power, and Hip-Hop has always played them with precision. Political? Certainly, but that’s only part of the story. Hip-Hop is also about memory, transmission, and resilience.</p>
-</div>
-
-<!-- CONTENT -->
-<div class="article-content">
 
   <h2>Roots of Hip-Hop</h2>
   <p>
@@ -168,19 +202,26 @@ body {
 
   <h2>Early Musical Influences</h2>
   <p>
-    During my childhood, my parents played <a href="https://en.wikipedia.org/wiki/Ella_Fitzgerald" target="_blank">Ella Fitzgerald</a>, <a href="https://en.wikipedia.org/wiki/Billie_Holiday" target="_blank">Billie Holiday</a>, and <a href="https://en.wikipedia.org/wiki/Charlie_Parker" target="_blank">Charlie Parker</a>. Even before I could understand the lyrics, I felt their emotional weight. Music spoke truths that words alone could not convey.
+    During my childhood, my parents played <a href="https://en.wikipedia.org/wiki/Ella_Fitzgerald" target="_blank">Ella Fitzgerald</a>, <a href="https://en.wikipedia.org/wiki/Billie_Holiday" target="_blank">Billie Holiday</a>, and <a href="https://en.wikipedia.org/wiki/Charlie_Parker" target="_blank">Charlie Parker</a> . Even before I could understand the lyrics, I felt their emotional weight. Music spoke truths that words alone could not convey.
   </p>
 
   <h2>Rhythm as Writing</h2>
   <p>
-    Later, as a jazz guitarist, I found freedom in improvisation. Hip-Hop revealed a new dimension: rhythm could write, and words could strike with force. Tupac Shakur’s <a href="https://en.wikipedia.org/wiki/The_Rose_That_Grew_from_Concrete" target="_blank">poetry</a> exemplifies this: 
-    <div class="quote">“Long live the rose that grew from concrete when no one else even cared.”</div>
+    Later, as a jazz guitarist, I found freedom in improvisation. Hip-Hop revealed a new dimension: rhythm could write, and words could strike with force. Tupac Shakur’s <a href="https://en.wikipedia.org/wiki/The_Rose_That_Grew_from_Concrete" target="_blank">poetry</a> exemplifies this:
+  </p>
+
+  <div class="quote-box">
+    <div class="quote-text">“Long live the rose that grew from concrete when no one else even cared.”</div>
+    <span class="quote-author">TUPAC SHAKUR</span>
+  </div>
+
+  <p>
     Two centuries apart, Rousseau’s <a href="https://en.wikipedia.org/wiki/Social_Contract" target="_blank">Social Contract</a> reflects the same moral questioning.
   </p>
 
   <h2>Form, Voice, and Literature</h2>
   <p>
-    Hip-Hop, like literature, emphasizes form and voice. Rhymes are structured like verses, punchlines like aphorisms. From work songs to <a href="https://en.wikipedia.org/wiki/To_Pimp_a_Butterfly" target="_blank">Kendrick Lamar’s To Pimp a Butterfly</a>, Black music reflects the evolution of language—from survival to art, from oppression to self-definition.
+    Hip-Hop, like literature, emphasizes form and voice. Rhymes are structured like verses, punchlines like aphorisms. From work songs to <a href="https://en.wikipedia.org/wiki/To_Pimp_a_Butterfly" target="_blank">Kendrick Lamar’s To Pimp a Butterfly</a> , Black music reflects the evolution of language—from survival to art, from oppression to self-definition.
   </p>
 
   <h2>Hip-Hop in Academia</h2>
@@ -193,15 +234,36 @@ body {
     Hip-Hop is not just about rhythm, it’s about meaning, expression, and literary depth. It’s poetry set to a beat, a voice of conscience and art.
   </p>
 
-  <div class="quote">“For writing is daring, and I dare without holding back.” — <a href="https://en.wikipedia.org/wiki/Kery_James" target="_blank">Kery James</a></div>
+  <div class="quote-box">
+    <div class="quote-text">“For writing is daring, and I dare without holding back.”</div>
+    <span class="quote-author">KERY JAMES</span>
+  </div>
 
 </div>
 
-<!-- FOOTER -->
 <div class="article-footer">
-  <p>Written & curated by HANA-LISA H.</p>
-  <a href="work.html">← Back to Works</a>
+  <a href="work.html" class="back-btn">← Back to Archive</a>
+  <span class="copyright">HANA-LISA H. © 2025</span>
 </div>
+
+<script>
+// SMOOTH REVEAL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = 'translateY(40px)';
+  el.style.transition = 'all 0.8s ease-out';
+  observer.observe(el);
+});
+</script>
 
 </body>
 </html>

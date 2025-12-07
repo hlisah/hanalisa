@@ -3,531 +3,439 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HANA-LISA Portfolio</title>
+<title>HANA-LISA H. // PORTFOLIO</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
-@font-face {
-  font-family: 'Fraunces';
-  src: url('Fraunces.ttf') format('truetype');
-  font-display: swap;
+/* ===== VARIABLES ===== */
+:root {
+  --bg: #050505;       /* Noir profond */
+  --text: #eaddca;     /* Beige papier */
+  --accent: #ffffff;   /* Blanc pur */
+  --line: rgba(234, 221, 202, 0.15); /* Lignes très fines */
 }
 
-/* ===== GLOBAL ===== */
+* { box-sizing: border-box; cursor: none; }
+
 html, body {
-  margin:0;
-  padding:0;
-  font-family:'Fraunces', serif;
-  background:#fafafa;
-  color:#111;
-  scroll-behavior: smooth;
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Fraunces', serif;
+  overflow-x: hidden;
+  height: 100%;
 }
 
-/* ===== NAVIGATION ===== */
-.nav-sections {
-  display:flex;
-  justify-content:center;
-  gap:25px;
-  margin:40px 0 40px 0;
+/* LOADER */
+.loader {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: #000; z-index: 9999;
+  display: flex; justify-content: flex-end; align-items: flex-end;
+  padding: 40px;
+  font-family: 'Space Mono'; font-size: 80px; color: #fff;
+  transition: transform 0.8s ease-in-out;
 }
-.nav-sections a {
-  padding:12px 26px;
-  border:2px solid #1b4d3e;
-  border-radius:8px;
-  text-decoration:none;
-  color:#1b4d3e;
-  font-weight:600;
-  letter-spacing:0.5px;
-  transition:0.3s;
+.loader.hidden { transform: translateY(-100%); }
+
+/* CURSOR */
+.cursor-dot, .cursor-outline {
+  position: fixed; top: 0; left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%; z-index: 9999; pointer-events: none;
 }
-.nav-sections a:hover {
-  background:#1b4d3e;
-  color:#fff;
+.cursor-dot { width: 6px; height: 6px; background-color: var(--accent); }
+.cursor-outline {
+  width: 40px; height: 40px;
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+body.hovering .cursor-outline { width: 60px; height: 60px; background: rgba(255,255,255,0.05); border-color: transparent; }
+
+/* GRAIN */
+.noise {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 999; opacity: 0.04;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
 }
 
-/* ===== VIDEO ===== */
-.video-band {
-  width:92%;
-  height:260px;
-  margin:0 auto;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+/* NAV */
+nav {
+  position: fixed; top: 40px; right: 40px; z-index: 100;
+  mix-blend-mode: exclusion;
 }
-.video-band video {
-  width:100%;
-  height:100%;
-  object-fit:cover;
+nav a {
+  display: block; text-align: right; text-decoration: none;
+  color: #fff; opacity: 0.7;
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 6px; transition: 0.3s;
+}
+nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
+
+/* ===== HERO (MAGAZINE STYLE) ===== */
+.hero-wrapper {
+  position: relative; width: 100%; height: 100vh;
+  overflow: hidden;
 }
 
-/* ===== INTRO ===== */
-.intro {
-  margin-top:35px;
-  text-align:center;
-  color:#1a1a1a;
-}
-.typewriter {
-  display:inline-block;
-  border-right:2px solid #1b4d3e;
-  white-space:nowrap;
-  overflow:hidden;
-  font-size:clamp(36px,5vw,60px);
-  letter-spacing:1px;
-}
-@keyframes blinkCursor {
-  0%, 49% { border-color: #1b4d3e; }
-  50%, 100% { border-color: transparent; }
-}
-.slogan { 
-  font-size:22px;
-  margin-top:6px;
-  color:#333;
-  letter-spacing:0.3px;
-}
-.quote { 
-  font-size:18px;
-  margin-top:8px;
-  color:#444;
-  font-style:italic;
-  margin-bottom:20px;
-}
-.vertical-bar {
-  width:80px;
-  height:4px;
-  background:#1b4d3e;
-  margin:15px auto 25px auto;
-  border-radius:2px;
+.hero-video {
+  width: 100%; height: 100%; object-fit: cover;
+  /* Vidéo plus claire pour contraster avec le texte foncé */
+  filter: brightness(0.8) desaturate(0.6); 
+  transform: scale(1.05);
 }
 
-/* Discover */
-.discover {
-  display:inline-block;
-  margin-top:20px;
-  padding:12px 32px;
-  border:2px solid #1b4d3e;
-  border-radius:8px;
-  text-decoration:none;
-  color:#1b4d3e;
-  font-weight:600;
-  cursor:pointer;
-  transition:0.3s;
-}
-.discover:hover {
-  background:#1b4d3e;
-  color:#fff;
+.hero-overlay {
+  position: absolute; bottom: 60px; left: 60px; z-index: 10;
+  /* Pas de blend mode pour garder la couleur exacte */
 }
 
-/* ===== REVEAL CONTENT ===== */
-#revealContainer {
-  overflow:hidden;
-  height:0;
-  transition: height 0.8s ease;
-}
-.cinematic {
-  opacity:0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.cinematic.show {
-  opacity:1;
-  transform: translateY(0);
+.hero-title {
+  font-size: clamp(80px, 16vw, 220px); /* Immense */
+  line-height: 0.85;
+  font-weight: 300; /* Fin et élégant */
+  margin: 0;
+  /* GRIS ANTHRACITE FONCÉ (ENCRE) */
+  color: #1a1a1a; 
+  font-style: italic; /* CHANGEMENT ICI : ITALIQUE */
+  letter-spacing: -4px;
 }
 
-/* ===== MEDIA SECTION ===== */
-.media-section {
-  width:90%;
-  margin:40px auto 40px auto;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-}
-.media-title {
-  font-size:22px;
-  font-weight:600;
-  font-family:'Fraunces', serif;
-  color:#1b4d3e;
-  padding:12px 0;
-  margin-bottom:8px;
-  border-bottom:1.5px solid rgba(27,77,62,0.4);
-  width:100%;
-  cursor:pointer;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  letter-spacing:0.5px;
-  transition: background 0.3s, padding-left 0.3s;
-}
-.media-title:hover { 
-  background:rgba(27,77,62,0.05); 
-  padding-left:6px;
-}
-.media-title::after {
-  content:'⌄';
-  font-size:18px;
-  margin-left:10px;
-  color:#1b4d3e;
-  transition:transform 0.3s;
-}
-.media-title.open::after {
-  transform:rotate(180deg);
-}
-.media-content {
-  display:none;
-  margin-top:15px;
-  flex-direction:row;
-  gap:25px;
-  position:relative;
-  padding-left:5px;
-}
-.media-block .media-item {
-  font-size:16px;
-  margin:10px 0;
-  cursor:pointer;
-  transition:color 0.25s, padding-left 0.25s;
-}
-.media-block .media-item:hover {
-  color:#1b4d3e;
-  padding-left:4px;
-}
-.media-info {
-  position:absolute;
-  left:150px;
-  top:0;
-  width:260px;
-  display:none;
-  opacity:0;
-  background:rgba(255,255,255,0.95);
-  padding:10px;
-  border-radius:8px;
-  border:1px solid rgba(27,77,62,0.3);
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  transition:opacity 0.3s ease;
-  z-index:20;
-}
-.media-info.show {
-  display:block;
-  opacity:1;
-}
-.media-info img {
-  width:100%;
-  border-radius:6px;
-  margin-bottom:8px;
+.hero-subtitle {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  margin-top: 30px;
+  display: flex; gap: 30px;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #333; /* Gris foncé assorti */
 }
 
-/* ===== SKETCHES ===== */
-.sketches-bg {
-  width:92%;
-  margin:60px auto;
-  display:flex;
-  justify-content:center;
-  gap:50px;
+.scroll-down {
+  position: absolute; bottom: 60px; right: 60px;
+  font-family: 'Space Mono'; font-size: 11px; color: #333;
+  animation: float 2s infinite ease-in-out;
 }
-.sketch {
-  width:140px;
-  border-radius:12px;
-  cursor:pointer;
-  opacity:0.9;
-  transition:0.3s;
-  box-shadow:0 8px 20px rgba(0,0,0,0.07);
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(10px)} }
+
+/* ===== MARQUEE (BANDEAU EDITO) ===== */
+.marquee-container {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 25px 0; overflow: hidden; white-space: nowrap;
 }
-.sketch:hover {
-  opacity:1;
-  transform:scale(1.03);
+.marquee-content {
+  display: inline-block; animation: marquee 35s linear infinite;
+  font-family: 'Fraunces', serif; font-size: 20px; font-style: italic;
+  color: var(--text); opacity: 0.6;
 }
-.sketch-description {
-  background:rgba(27,77,62,0.95);
-  color:#fff;
-  padding:8px 12px;
-  border-radius:8px;
-  font-size:14px;
-  margin-top:8px;
-  display:none;
-  text-align:center;
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ===== MAIN CONTENT ===== */
+.container { max-width: 1300px; margin: 0 auto; padding: 140px 20px; }
+
+/* STATEMENT (QUOTE) */
+.statement {
+  max-width: 800px; margin: 0 auto 180px auto; text-align: center;
+}
+.statement-text {
+  font-size: clamp(28px, 4vw, 42px); font-weight: 300; line-height: 1.4; color: #ccc;
+}
+.statement-author {
+  display: block; font-family: 'Space Mono'; font-size: 10px;
+  color: #666; margin-top: 40px; text-transform: uppercase; letter-spacing: 2px;
 }
 
-/* ===== CAROUSEL ===== */
-.carousel-container {
-  width:760px;
-  margin:80px auto 80px auto;
-  position:relative;
+/* SECTION HEADERS (UNIFORMISÉS) */
+.section-header {
+  border-top: 1px solid var(--line); /* Ligne au dessus comme dans les magazines */
+  padding-top: 20px; margin-bottom: 80px;
+  display: flex; justify-content: space-between; align-items: flex-start;
 }
-.carousel-title {
-  font-size:24px;
-  font-weight:700;
-  color:#1b4d3e;
-  margin-bottom:20px;
-}
-.carousel-wrapper { overflow:hidden; }
-.carousel-inner {
-  display:flex;
-  transition: transform 0.4s ease;
-}
-.carousel-item {
-  width:240px;
-  margin-right:15px;
-  border-radius:14px;
-  overflow:hidden;
-  flex-shrink:0;
-  background:#fff;
-  box-shadow:0 6px 18px rgba(0,0,0,0.08);
-  transition:0.3s;
-}
-.carousel-item:hover {
-  transform:translateY(-5px);
-  box-shadow:0 10px 26px rgba(0,0,0,0.12);
-}
-.carousel-item img {
-  width:100%;
-  height:130px;
-  object-fit:cover;
-}
-.carousel-item h3 {
-  margin:8px 5px 15px 5px;
-  font-size:15px;
-  text-align:center;
-  color:#222;
-}
-.carousel-btn {
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background: rgba(27,77,62,0.7);
-  color:#fff;
-  border:none;
-  font-size:26px;
-  padding:10px 12px;
-  border-radius:50%;
-  cursor:pointer;
-  transition:0.3s;
-}
-.carousel-btn:hover { background: rgba(27,77,62,0.9); }
-.carousel-btn.left { left:-35px; }
-.carousel-btn.right { right:-35px; }
 
-/* ===== FOOTER ===== */
+.label-group {
+  display: flex; gap: 20px; align-items: baseline;
+}
+
+.section-number {
+  font-family: 'Space Mono'; font-size: 12px; color: var(--accent);
+}
+
+.section-label {
+  font-family: 'Space Mono'; font-size: 12px; text-transform: uppercase;
+  letter-spacing: 2px; color: #888;
+}
+
+.section-explainer {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  color: #555; max-width: 400px; line-height: 1.6; text-align: right;
+}
+
+/* GALLERY GRID */
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(12, 1fr); gap: 30px;
+  margin-bottom: 200px;
+}
+
+.gallery-item {
+  position: relative; overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(100%); transition: 0.6s;
+}
+.gallery-item:hover img { filter: grayscale(0%); transform: scale(1.05); }
+
+/* Info survol */
+.hover-info {
+  position: absolute; bottom: 20px; left: 20px;
+  background: var(--bg); color: var(--accent);
+  padding: 8px 15px; font-family: 'Space Mono'; font-size: 11px;
+  text-transform: uppercase; opacity: 0; transition: 0.3s;
+}
+.gallery-item:hover .hover-info { opacity: 1; }
+
+.g-item-1 { grid-column: 1 / 7; height: 650px; }
+.g-item-2 { grid-column: 8 / 13; height: 450px; margin-top: 120px; }
+.g-item-3 { grid-column: 4 / 10; height: 500px; margin-top: -80px; z-index: 2; border: 15px solid var(--bg); }
+
+/* ARTICLES LIST (TABLE OF CONTENTS STYLE) */
+.article-list { border-top: 1px solid var(--line); }
+
+.article-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 50px 0; border-bottom: 1px solid var(--line);
+  text-decoration: none; color: var(--text); position: relative;
+  transition: 0.4s;
+}
+.article-row:hover { padding-left: 30px; color: var(--accent); }
+
+.art-title { font-size: 48px; font-weight: 300; margin: 0; transition: 0.4s; letter-spacing: -1px; }
+.article-row:hover .art-title { font-style: italic; }
+
+.art-meta { font-family: 'Space Mono'; font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+
+/* HOVER PREVIEW IMAGE */
+.hover-img-preview {
+  position: fixed; width: 350px; height: 220px;
+  object-fit: cover; pointer-events: none; z-index: 50;
+  opacity: 0; transform: scale(0.8);
+  transition: opacity 0.3s, transform 0.3s;
+  border: 1px solid var(--accent);
+  filter: grayscale(100%);
+}
+.article-row:hover ~ .hover-img-preview, 
+.hover-img-preview.active {
+  opacity: 1; transform: scale(1); filter: grayscale(0%);
+}
+
+/* FOOTER */
 footer {
-  width:100%;
-  text-align:center;
-  font-size:14px;
-  color:#555;
-  padding:20px 0;
-  border-top:1px solid #1b4d3e;
-  background:#fafafa;
-  margin-top:40px;
+  text-align: center; padding: 100px 0; 
+  font-family: 'Space Mono'; font-size: 10px; color: #666;
+  text-transform: uppercase; letter-spacing: 2px;
+}
+
+@media(max-width: 900px) {
+  .hero-title { font-size: 60px; }
+  .gallery-grid { display: flex; flex-direction: column; }
+  .g-item-1, .g-item-2, .g-item-3 { width: 100%; height: 350px; margin: 0; border: none; }
+  .art-title { font-size: 28px; }
+  .section-header { flex-direction: column; gap: 20px; }
+  .section-explainer { text-align: left; }
+  .hover-img-preview { display: none; }
+  .cursor-dot, .cursor-outline { display: none; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<div class="nav-sections">
-  <a href="about.html">About</a>
-  <a href="work.html">Work</a>
-  <a href="contact.html">Contact</a>
-</div>
+<div class="loader" id="loader">0%</div>
 
-<!-- VIDEO -->
-<div class="video-band">
-  <video autoplay muted loop playsinline>
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
+
+<div class="noise"></div>
+
+<nav>
+  <a href="about.html" class="hover-trigger">About</a>
+  <a href="work.html" class="hover-trigger">Work</a>
+  <a href="contact.html" class="hover-trigger">Contact</a>
+  <a href="https://instagram.com" target="_blank" class="hover-trigger">IG ↗</a>
+</nav>
+
+<div class="hero-wrapper">
+  <video autoplay muted loop playsinline class="hero-video">
     <source src="car.mp4" type="video/mp4">
   </video>
+  
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <span class="hero-subtitle">Paris — Editor — 2025</span>
+      <h1 class="hero-title">I Write.</h1>
+    </div>
+  </div>
+
+  <div class="scroll-down">SCROLL ↓</div>
 </div>
 
-<!-- INTRO -->
-<div class="intro">
-  <h1 id="typewriter" class="typewriter"></h1>
-  <div class="vertical-bar"></div>
-  <div class="slogan">I write.</div>
-  <div class="quote">“I could feel that Notre-Dame, Flaubert or Truffaut were familiar to me, and yet, through a strange accident of history, they became my heritage.” 
-    Leïla Slimani, The Scent of Flowers at Night</div>
-  <span class="discover" id="discoverBtn">Discover More</span>
-</div>
-
-<!-- REVEAL CONTENT -->
-<div id="revealContainer">
-  <div id="mainContent">
-    <!-- MEDIA SECTION -->
-    <div class="media-section cinematic">
-      <div class="media-title" id="mediaTitle">3 Medias to Know Me</div>
-      <div class="media-content" id="mediaContent">
-        <div class="media-block">
-          <div class="media-item" data-target="movie">Movie</div>
-          <div class="media-item" data-target="book">Book</div>
-          <div class="media-item" data-target="report">Reportage</div>
-        </div>
-        <div class="media-info" id="mediaInfo">
-          <img src="" id="mediaImg" alt="">
-          <p id="mediaText"></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- SKETCHES -->
-    <div class="sketches-bg cinematic">
-      <div>
-        <img src="hugo.jpg" class="sketch" alt="Hugo" data-description="Victor Hugo showed me how words can move the world and shaped my love for literature.">
-        <div class="sketch-description"></div>
-      </div>
-      <div>
-        <img src="james.jpg" class="sketch" alt="James" data-description="Kery James reminds me how words can empower and resonate through music.">
-        <div class="sketch-description"></div>
-      </div>
-      <div>
-        <img src="shafak.jpg" class="sketch" alt="Shafak" data-description="Elif Shafak moves me through her writing, it's a spiritual, multicultural journey I feel deeply.">
-        <div class="sketch-description"></div>
-      </div>
-    </div>
-
-    <!-- CAROUSEL -->
-    <div class="carousel-container cinematic">
-      <div class="carousel-title">Latest Articles</div>
-      <div class="carousel-wrapper">
-        <div class="carousel-inner" id="carouselInner">
-          <a href="articlehiphop.html" class="carousel-item">
-            <img src="hiphopbanner.jpg" alt="Hip-Hop">
-            <h3>Hip-Hop is About Literature</h3>
-          </a>
-          <a href="interview.html" class="carousel-item">
-            <img src="interview.jpg" alt="Interview">
-            <h3>Interview Insights</h3>
-          </a>
-          <a href="diome.html" class="carousel-item">
-            <img src="diomebanner.jpg" alt="Diome">
-            <h3>Fatou Diome: Literary Analysis</h3>
-          </a>
-          <a href="economy.html" class="carousel-item">
-            <img src="economyminia.png" alt="Economy">
-            <h3>Economy & Society</h3>
-          </a>
-          <a href="barthes.html" class="carousel-item">
-            <img src="barthesbanner.jpg" alt="Barthes">
-            <h3>Barthes and Semiotics</h3>
-          </a>
-        </div>
-      </div>
-
-      <button class="carousel-btn left" id="carouselLeft">‹</button>
-      <button class="carousel-btn right" id="carouselRight">›</button>
-    </div>
+<div class="marquee-container">
+  <div class="marquee-content">
+    LITERATURE &nbsp; • &nbsp; CINEMA &nbsp; • &nbsp; JOURNALISM &nbsp; • &nbsp; SOCIETY &nbsp; • &nbsp; LITERATURE &nbsp; • &nbsp; CINEMA &nbsp; • &nbsp; JOURNALISM &nbsp; • &nbsp; SOCIETY
   </div>
 </div>
 
-<!-- FOOTER -->
+<div class="container">
+
+  <div class="statement fade-up">
+    <div class="statement-text">
+      “I write entirely to find out what I’m thinking, what I’m looking at, what I see and what it means.”
+    </div>
+    <span class="statement-author">JOAN DIDION — WHY I WRITE</span>
+  </div>
+
+  <div class="section-header fade-up">
+    <div class="label-group">
+      <span class="section-number">(01)</span>
+      <span class="section-label">Cultural DNA</span>
+    </div>
+    <div class="section-explainer">
+      Blueprint of my identity. A movie, a book, and a reportage. Three mediums to understand the narrative.
+    </div>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item g-item-1 hover-trigger fade-up">
+      <img src="papicha.jpg" alt="Papicha">
+      <div class="hover-info">Papicha — Movie</div>
+    </div>
+    
+    <div class="gallery-item g-item-2 hover-trigger fade-up">
+      <img src="sartre.jpg" alt="Sartre">
+      <div class="hover-info">No Exit — Book</div>
+    </div>
+
+    <div class="gallery-item g-item-3 hover-trigger fade-up">
+      <img src="quai.jpeg" alt="Quai">
+      <div class="hover-info">Ouistreham — Report</div>
+    </div>
+  </div>
+
+  <div class="section-header fade-up">
+    <div class="label-group">
+      <span class="section-number">(02)</span>
+      <span class="section-label">Latest Writings</span>
+    </div>
+    <div class="section-explainer">
+      Selected works and essays. Analysis of culture, economy, and society through a literary lens.
+    </div>
+  </div>
+
+  <div class="article-list">
+    
+    <a href="articlehiphop.html" class="article-row hover-trigger fade-up" data-img="hiphopbanner.png">
+      <h3 class="art-title">Hip-Hop is about Literature</h3>
+      <span class="art-meta">Music / Analysis</span>
+    </a>
+
+    <a href="interview.html" class="article-row hover-trigger fade-up" data-img="interview.png">
+      <h3 class="art-title">Conversations</h3>
+      <span class="art-meta">Society / Interview</span>
+    </a>
+
+    <a href="diome.html" class="article-row hover-trigger fade-up" data-img="diome.png">
+      <h3 class="art-title">Fatou Diome</h3>
+      <span class="art-meta">Books / Review</span>
+    </a>
+
+    <a href="barthes.html" class="article-row hover-trigger fade-up" data-img="barthes.png">
+      <h3 class="art-title">Barthes Semiotics</h3>
+      <span class="art-meta">Theory / Essay</span>
+    </a>
+    
+    <img src="" class="hover-img-preview" id="cursor-img">
+
+  </div>
+
+</div>
+
 <footer>
-  &copy; 2025 HANA-LISA H.
+  PORTFOLIO HANA-LISA H. © 2025<br>
+  DESIGNED IN PARIS
 </footer>
 
 <script>
-// TYPEWRITER
-const text = "HANA-LISA H.";
-const target = document.getElementById('typewriter');
-let index = 0;
-function typeWriter() {
-  if(index < text.length){
-    target.textContent += text.charAt(index);
-    index++;
-    setTimeout(typeWriter, 80);
+// 1. LOADER
+const loader = document.getElementById('loader');
+let load = 0;
+const interval = setInterval(() => {
+  load += Math.floor(Math.random() * 15) + 1;
+  if (load > 100) load = 100;
+  loader.innerText = load + '%';
+  if (load === 100) {
+    clearInterval(interval);
+    setTimeout(() => loader.classList.add('hidden'), 500);
   }
-}
-typeWriter();
-target.style.animation = "blinkCursor 0.7s step-end infinite";
+}, 50);
 
-// DISCOVER MORE - toggle avec effet cinématique
-const discoverBtn = document.getElementById('discoverBtn');
-const revealContainer = document.getElementById('revealContainer');
-const cinematicElems = document.querySelectorAll('#mainContent .cinematic');
+// 2. CURSOR
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorOutline = document.querySelector('.cursor-outline');
 
-let open = false;
-discoverBtn.addEventListener('click', () => {
-  const contentHeight = document.getElementById('mainContent').scrollHeight;
-  if(!open){
-    revealContainer.style.height = contentHeight + 'px';
-    cinematicElems.forEach((el, i) => {
-      setTimeout(()=> el.classList.add('show'), i*150);
-    });
-  } else {
-    revealContainer.style.height = '0';
-    cinematicElems.forEach(el => el.classList.remove('show'));
-  }
-  open = !open;
+window.addEventListener('mousemove', (e) => {
+  const posX = e.clientX;
+  const posY = e.clientY;
+  cursorDot.style.left = `${posX}px`;
+  cursorDot.style.top = `${posY}px`;
+  cursorOutline.animate({
+    left: `${posX}px`,
+    top: `${posY}px`
+  }, { duration: 500, fill: "forwards" });
 });
 
-// SKETCHES
-const sketches = document.querySelectorAll('.sketch');
-sketches.forEach(sketch => {
-  const descContainer = sketch.nextElementSibling;
-  sketch.addEventListener('click', (e) => {
-    e.stopPropagation();
-    document.querySelectorAll('.sketch-description').forEach(d => {
-      if(d !== descContainer) d.style.display = 'none';
-    });
-    descContainer.textContent = sketch.dataset.description;
-    descContainer.style.display = 'block';
-  });
-});
-document.addEventListener('click', () => {
-  document.querySelectorAll('.sketch-description').forEach(d => d.style.display = 'none');
+document.querySelectorAll('.hover-trigger, a').forEach(link => {
+  link.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+  link.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
 });
 
-// MEDIA TOGGLE
-const mediaTitle = document.getElementById('mediaTitle');
-const mediaContent = document.getElementById('mediaContent');
-mediaTitle.addEventListener('click', ()=> {
-  const openMedia = mediaContent.style.display === 'flex';
-  mediaContent.style.display = openMedia ? 'none' : 'flex';
-  mediaTitle.classList.toggle('open', !openMedia);
-});
-const mediaItems = document.querySelectorAll('.media-item');
-const mediaInfo = document.getElementById('mediaInfo');
-const mediaImg = document.getElementById('mediaImg');
-const mediaText = document.getElementById('mediaText');
-let openMediaItem = null;
-const mediaData = {
-  movie: { img:'papicha.jpg', text:'“Papicha” — Young women, fearless and free, in Algerias darkest era.' },
-  book: { img:'sartre.jpg', text:'“No Exit” — Endlessy interpretable, unforgettable play.' },
-  report: { img:'quai.jpeg', text:'“Le Quai de Ouistreham” — The immersive reporting I dream of, truthful, vivid, unforgettable.' }
-};
-mediaItems.forEach(item => {
-  item.addEventListener('click', e => {
-    e.stopPropagation();
-    const key = item.dataset.target;
-    if(openMediaItem === key){
-      mediaInfo.classList.remove('show');
-      setTimeout(()=> mediaInfo.style.display='none',250);
-      openMediaItem=null;
-      return;
+// 3. IMAGE PREVIEW
+const articleRows = document.querySelectorAll('.article-row');
+const cursorImg = document.getElementById('cursor-img');
+
+articleRows.forEach(row => {
+  row.addEventListener('mousemove', (e) => {
+    const imgSrc = row.getAttribute('data-img');
+    if(imgSrc) {
+      cursorImg.src = imgSrc;
+      cursorImg.classList.add('active');
+      cursorImg.style.left = (e.clientX + 30) + 'px';
+      cursorImg.style.top = (e.clientY - 100) + 'px';
     }
-    mediaImg.src = mediaData[key].img;
-    mediaText.textContent = mediaData[key].text;
-    mediaInfo.style.display='block';
-    requestAnimationFrame(()=> mediaInfo.classList.add('show'));
-    openMediaItem = key;
+  });
+  row.addEventListener('mouseleave', () => {
+    cursorImg.classList.remove('active');
   });
 });
-document.addEventListener('click', ()=> {
-  if(openMediaItem){
-    mediaInfo.classList.remove('show');
-    setTimeout(()=> mediaInfo.style.display='none',250);
-    openMediaItem=null;
-  }
-});
 
-// CAROUSEL
-const carouselInner = document.getElementById('carouselInner');
-const btnLeft = document.getElementById('carouselLeft');
-const btnRight = document.getElementById('carouselRight');
-let scrollPosition = 0;
-const itemWidth = 255; 
-const maxScroll = carouselInner.scrollWidth - 3*itemWidth;
-btnRight.addEventListener('click', () => {
-  scrollPosition += itemWidth;
-  if(scrollPosition > maxScroll) scrollPosition = maxScroll;
-  carouselInner.style.transform = `translateX(-${scrollPosition}px)`;
-});
-btnLeft.addEventListener('click', () => {
-  scrollPosition -= itemWidth;
-  if(scrollPosition < 0) scrollPosition = 0;
-  carouselInner.style.transform = `translateX(-${scrollPosition}px)`;
+// 4. SCROLL ANIMATION
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = 'translateY(40px)';
+  el.style.transition = 'all 0.8s ease-out';
+  observer.observe(el);
 });
 </script>
 

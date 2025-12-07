@@ -3,248 +3,280 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A Mother’s Tale — HANA-LISA Portfolio</title>
+<title>A MOTHER'S TALE // HANA-LISA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100;300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
 <style>
-@font-face {
-  font-family: 'Fraunces';
-  src: url('Fraunces.ttf') format('truetype');
-  font-display: swap;
+/* ===== AESTHETIC: DARK MONOCHROME ===== */
+:root {
+  --bg: #0f0f0f;       /* Noir profond */
+  --text: #eaddca;     /* Beige coquille d'œuf */
+  --accent: #ffffff;   /* Blanc pur */
+  --line: rgba(234, 221, 202, 0.15);
 }
 
-/* GLOBAL */
-body {
-  margin:0;
-  padding:0;
-  font-family:'', serif;
-  background:#fff;
-  color:#111;
-  line-height:1.6;
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Fraunces', serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* GRAIN */
+.noise {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 999; opacity: 0.04;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
 }
 
 /* NAV */
-.nav-sections {
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  margin:30px 0;
+nav {
+  position: fixed; top: 30px; right: 40px; z-index: 100;
+  mix-blend-mode: exclusion;
 }
-.nav-sections a {
-  padding:10px 20px;
-  border:2px solid #1b4d3e;
-  border-radius:6px;
-  text-decoration:none;
-  color:#111;
-  font-weight:bold;
-  transition:0.3s;
+nav a {
+  display: block; text-align: right; text-decoration: none;
+  color: #fff; opacity: 0.7;
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 6px; transition: 0.3s;
 }
-.nav-sections a:hover {
-  background:#1b4d3e;
-  color:#fff;
+nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
+
+/* ===== HERO HEADER ===== */
+.article-hero {
+  position: relative;
+  width: 100%; height: 70vh;
+  overflow: hidden;
 }
 
-/* HEADER BANNER */
-.header-banner {
-  width:90%;
-  height:300px;
-  margin:0 auto;
-  border-radius:12px;
-  overflow:hidden;
-}
-.header-banner img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.hero-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6) sepia(0.2);
 }
 
-/* TITLE SECTION */
-.article-header {
-  text-align:center;
-  margin:40px auto 20px auto;
-  width:80%;
-}
-.article-header h1 {
-  font-family:'Fraunces', serif;
-  font-size:clamp(32px,5vw,48px);
-  color:#1b4d3e;
-  margin-bottom:5px;
-}
-.article-header .date {
-  font-family:'Fraunces', serif;
-  color:gray;
-  font-size:14px;
-  margin-bottom:15px;
-}
-.article-header p {
-  font-family:'Fraunces', serif;
-  font-weight:normal;
-  font-size:18px;
-  color:#111;
-  max-width:700px;
-  margin:auto;
-  opacity:0.9;
+/* ===== TITLE BLOCK ===== */
+.header-content {
+  max-width: 900px; margin: 0 auto; padding: 60px 20px 40px 20px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
 }
 
-/* CONTENT */
-.article-content {
-  width:80%;
-  max-width:900px;
-  margin:50px auto;
-  font-size:18px;
-}
-.article-content p {
-  margin-bottom:20px;
-}
-.article-content h2 {
-  font-family:'Fraunces', serif;
-  color:#1b4d3e;
-  margin-top:40px;
-  font-size:22px;
-}
-.quote {
-  font-family:'Fraunces', serif;
-  border-left:3px solid #1b4d3e;
-  padding-left:15px;
-  font-style:italic;
-  color:#333;
-  margin:30px 0;
-}
-.article-content strong {
-  font-weight:bold;
+.article-title {
+  font-size: clamp(40px, 8vw, 72px);
+  font-weight: 300; font-style: italic;
+  line-height: 1.1; margin: 0 0 20px 0;
+  color: var(--accent);
 }
 
-/* FOOTER */
+.article-meta {
+  font-family: 'Space Mono', monospace; font-size: 12px;
+  color: #888; text-transform: uppercase; letter-spacing: 2px;
+  display: flex; gap: 20px; justify-content: center;
+}
+
+/* ===== CONTENT BODY ===== */
+.article-body {
+  max-width: 750px; margin: 80px auto; padding: 0 20px;
+  font-size: 20px; font-weight: 300;
+  color: #d0d0d0;
+}
+
+.article-body p {
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+/* INTERVIEW Q&A STYLE */
+.qa-block {
+  margin: 60px 0;
+  border-top: 1px solid var(--line);
+  padding-top: 40px;
+}
+
+.question {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.answer {
+  font-size: 20px; line-height: 1.6;
+  color: var(--text);
+  padding-left: 20px; border-left: 1px solid var(--line);
+}
+
+/* STATS BOX */
+.stats-box {
+  border: 1px solid var(--line);
+  padding: 30px; margin: 40px 0;
+  text-align: center;
+}
+.stat-number {
+  font-family: 'Fraunces', serif; font-size: 48px;
+  color: var(--accent); display: block;
+}
+.stat-label {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  text-transform: uppercase; color: #888;
+}
+
+/* QUOTES */
+.quote-box {
+  margin: 60px 0; padding: 0 20px;
+  text-align: center;
+}
+.quote-text {
+  font-size: 32px; font-style: italic; line-height: 1.3;
+  color: var(--accent);
+}
+
+/* SUBTITLES */
+h2 {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px; text-transform: uppercase; letter-spacing: 2px;
+  color: #888; margin-top: 80px; margin-bottom: 30px;
+  text-align: center;
+}
+
+/* FOOTER NAV */
 .article-footer {
-  text-align:center;
-  margin:50px auto;
+  text-align: center; margin: 100px 0 60px 0;
+  padding-top: 40px; border-top: 1px solid var(--line);
 }
-.article-footer a {
-  display:inline-block;
-  margin-top:10px;
-  padding:10px 20px;
-  border:2px solid #1b4d3e;
-  border-radius:6px;
-  text-decoration:none;
-  color:#111;
-  font-weight:bold;
-  transition:0.3s;
+.back-btn {
+  font-family: 'Space Mono', monospace; font-size: 12px;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--text); text-decoration: none;
+  border: 1px solid var(--line);
+  padding: 15px 30px; transition: 0.3s;
 }
-.article-footer a:hover {
-  background:#1b4d3e;
-  color:#fff;
+.back-btn:hover { background: var(--text); color: var(--bg); }
+
+/* ANIMATION */
+.fade-up {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<div class="nav-sections">
+<div class="noise"></div>
+
+<nav>
   <a href="index.html">Home</a>
   <a href="work.html">Work</a>
+  <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
+</nav>
+
+<div class="article-hero">
+  <img src="interview.png" alt="Mother Interview" class="hero-img">
 </div>
 
-<!-- BANNER -->
-<div class="header-banner">
-  <img src="interview.jpg" alt="Mother interview banner">
+<div class="header-content fade-up">
+  <h1 class="article-title">A Mother’s Tale</h1>
+  <div class="article-meta">
+    <span>Nov 04, 2025</span>
+    <span>Interview</span>
+    <span>Society</span>
+  </div>
 </div>
 
-<!-- HEADER -->
-<div class="article-header">
-  <h1>A Mother’s Tale: From Seoul to Boston</h1>
-  <div class="date">November 4, 2025</div>
-  <p>An intimate account of a mother navigating life, culture, and family across continents.</p>
-</div>
+<div class="article-body fade-up">
 
-<!-- CONTENT -->
-<div class="article-content">
+  <p>From India to the United States, passing through France, China, South Korea, and India, Mrs. W orchestrated the schooling of her three children across multiple educational systems. Today a teacher at a middle school in Boston, this former Algerian engineer looks with both lucidity and pride at the educational models that shaped her family’s success.</p>
 
-<p>From India to the United States, passing through France, China, South Korea, and India, Mrs. W orchestrated the schooling of her three children across multiple educational systems. Today a teacher at a middle school in Boston, this former Algerian engineer looks with both lucidity and pride at the educational models that shaped her family’s success.</p>
+  <p>Sunday morning, ten o’clock in Boston. The children have left the house. In the silence of the family office, Mrs. W prepares to answer questions.</p>
 
-<p><strong>Paris suburbs, elementary school:</strong> students from all backgrounds gathered in the same classroom.</p>
+  <h2>Global Citizens</h2>
 
-<p>Sunday morning, it is ten o’clock in Boston. The children have just left the house. In the silence of the family office, Mrs. W (a nickname given by her students during her early days as a substitute teacher) prepares to answer questions.</p>
+  <p>Her son Yanis, sixteen, dreams of law and economics. Jasmine, fifteen, is enrolled in an Advanced Program in computer science. Inès, the eldest, just completed an internship at NASA 
 
-<p>Her son Yanis, sixteen, has already attended a Summer Camp at Stanford: encouraged by his teachers for his abilities, he dreams of law and economics, fascinated by the Supreme Court of San Francisco.</p>
+[Image of NASA logo]
+. Three destinies unfolding far from Algiers, but guided by the same rigor.</p>
 
-<div class="quote">“He loves to debate, he loves to convince,” smiles his mother.</div>
+  <div class="quote-box">
+    <div class="quote-text">“In Asia, children discover discipline and competition. Students learn to read and write at the same time as mathematics.”</div>
+  </div>
 
-<p>Jasmine, her younger daughter, is enrolled in an Advanced Program in computer science, already oriented toward digital sciences at only fifteen. As for Inès, the eldest, she has just completed an internship at NASA as part of her studies in computer science and astronomy.</p>
+  <p>The numbers confirm this rigor. According to the National Science Board (2021), South Korea scored an average of 519 points in mathematics on the PISA tests, compared to 478 for the United States.</p>
 
-<p>Three destinies unfolding far from Algiers, but guided by the same rigor: that of a demanding international education.</p>
+  <div class="stats-box">
+    <span class="stat-number">#1</span>
+    <span class="stat-label">South Korea Education Ranking (2025)</span>
+  </div>
 
-<h2>School as a Passport</h2>
+  <p>A graduate in process engineering, Mrs. W put her career on hold to follow her husband. Fifteen years of expatriation in Asia, five in America. A choice she never regretted.</p>
 
-<p>For the W. family, school is more than a place of learning: it is a passport.</p>
-<p>India, China, South Korea, France, the United States… With each move, a new system to navigate, new methods, new codes.</p>
+  <h2>In Conversation</h2>
 
-<div class="quote">“In Asia, children discover discipline and competition. Students learn to read and write at the same time as mathematics,” says Mrs. W.</div>
+  <div class="qa-block">
+    <span class="question">01. What major differences have you observed between educational systems?</span>
+    <div class="answer">
+      Inès started school at three and a half; she doesn’t know the French system very well. The Asian and American systems are solid, very focused on mathematics. Children start math at five in Asia.<br><br>
+      In the United States, there are many Asian students, highly performing and competitive. In Boston, my children are surrounded by South Koreans, Chinese, Japanese, and Indians. Parents invest heavily in education.
+    </div>
+  </div>
 
-<p>The numbers confirm this rigor: according to the National Science Board (NSB, 2021), South Korea scored an average of 519 points in mathematics on the 2018 PISA tests, compared to 478 for the United States.</p>
+  <div class="qa-block">
+    <span class="question">02. Was the sacrifice worth it?</span>
+    <div class="answer">
+      In South Korea, educated mothers do not work. It is cultural. Their priority is the academic success of the family, a guarantee of social success.<br><br>
+      Yes, the sacrifice is worth it! It is a mentality I have adopted. If your children succeed, your effort makes perfect sense. But the pressure is intense. If you don’t have the level, you stay with those of your level.
+    </div>
+  </div>
 
-<p>In the United States, the approach is more flexible but no less selective: paid internships, advanced programs, and encouragement of initiative.</p>
+  <div class="qa-block">
+    <span class="question">03. Advice for expatriate parents?</span>
+    <div class="answer">
+      I can only be 100% in favor. I was lucky to be in Asia: a highly structured, demanding, formative society. But if I had lived in Africa or South America, I would surely have learned something else.<br><br>
+      Field experience is the best school there is.
+    </div>
+  </div>
 
-<div class="quote">“Here, we learn to sell ourselves, to debate, to dream big,” she summarizes.</div>
-
-<p>Global rankings confirm this difference: according to a 2025 ranking of international educational systems, South Korea ranks first, while the United States is 31st—a gap illustrating the distance between academic performance and the culture of innovation.</p>
-
-<h2>“Yes, It Was Worth It”</h2>
-
-<p>A graduate in process engineering, Mrs. W put her career on hold to follow her husband, also an engineer, and support their children’s education. Fifteen years of expatriation in Asia, five in America, and continuous adaptation without ever doubting the choices made.</p>
-
-<div class="quote">“In South Korea, ‘Tiger Moms’ are the norm,” she explains.</div>
-
-<p>This term refers to highly involved mothers, mostly educated, who ensure the academic and social success of their children.</p>
-
-<p>According to a Financial Times survey, 47.6% of children under six already attend private preparatory courses (hagwons) in South Korea.</p>
-
-<div class="quote">“I think it was worth it,” she concludes simply.</div>
-
-<h2>A Global Family</h2>
-
-<p>Today, her three children feel more like citizens of the world than of a single country.</p>
-
-<div class="quote">“Inès is the most ‘Asian’ after all that, Yanis is very ‘USA,’ Jasmine mixes the American spirit with curiosity for Europe. But none of them says: ‘I am Algerian’ first.”</div>
-
-<p>She adds:</p>
-<div class="quote">“It’s the land of their parents, of their ancestors, but my children grew up in countries where often people didn’t even know where Algeria was on a map.”</div>
-
-<p>A dual belonging, both “elsewhere” and “here,” which she now considers a richness.</p>
-
-<div class="quote">“Their identity is their openness. They are citizens of the world.”</div>
-
-<h2>INTERVIEW – Mrs. W: “If You Don’t Have the Level, You Stay with People of Your Level”</h2>
-
-<p><strong>1. What major differences have you observed between the educational systems of the countries where you lived?</strong></p>
-
-<p>Inès started school at three and a half; she doesn’t know the French system very well. The Asian and American systems are solid, very focused on mathematics. Children start math at five in Asia.</p>
-
-<p>In the United States, there are many Asian students, highly performing and competitive. In Boston, my children are surrounded by South Koreans, Chinese, Japanese, and Indians. Parents invest heavily in education: children take many private courses. They are strong students, with an excellent academic background.</p>
-
-<p><strong>2. What personal sacrifices did you make to support your children? Do you think it was worth it?</strong></p>
-
-<p>In South Korea, educated mothers do not work. It is cultural: the husband works, the wife takes care of the children. They devote themselves entirely to their children’s success, more than to the household.</p>
-
-<p>Their priority is the academic success of the family, a guarantee of social success.</p>
-
-<div class="quote">Yes, the sacrifice is worth it! It is a mentality I have adopted. If your children succeed, your effort makes perfect sense.</div>
-
-<p>But one must be realistic: the pressure is intense. Today in the United States, Yanis is surrounded by very competitive Indian and Chinese students. There, a good high school means a good university, and therefore a good job. If you don’t have the level, you stay with those of your level.</p>
-
-<p><strong>3. What advice would you give to expatriate parents or those wishing to offer their children an international education?</strong></p>
-
-<p>I can only be 100% in favor. I was lucky to be in Asia: a highly structured, demanding, formative society.</p>
-
-<p>But if I had lived in Africa or South America, I would surely have learned something else.</p>
-
-<p>Field experience is the best school there is.</p>
+  <div class="quote-box">
+    <div class="quote-text">“Their identity is their openness. They are citizens of the world.”</div>
+  </div>
 
 </div>
 
-<!-- FOOTER -->
 <div class="article-footer">
-  <p>Written & curated by HANA-LISA H.</p>
-  <a href="work.html">← Back to Works</a>
+  <a href="work.html" class="back-btn">← Back to Archive</a>
+  <br><br>
+  <span style="font-family:'Space Mono'; font-size:10px; color:#444;">HANA-LISA H. © 2025</span>
 </div>
+
+<script>
+// SMOOTH REVEAL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = 'translateY(40px)';
+  el.style.transition = 'all 0.8s ease-out';
+  observer.observe(el);
+});
+</script>
 
 </body>
 </html>

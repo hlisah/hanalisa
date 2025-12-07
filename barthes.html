@@ -3,216 +3,280 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Myth of Suburban Youth — HANA-LISA Portfolio</title>
+<title>THE MYTH OF SUBURBAN YOUTH // HANA-LISA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100;300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
 <style>
-@font-face {
-  font-family: 'Fraunces';
-  src: url('Fraunces.ttf') format('truetype');
-  font-display: swap;
+/* ===== AESTHETIC: DARK MONOCHROME ===== */
+:root {
+  --bg: #0f0f0f;       /* Noir profond */
+  --text: #eaddca;     /* Beige coquille d'œuf */
+  --accent: #ffffff;   /* Blanc pur */
+  --line: rgba(234, 221, 202, 0.15);
 }
 
-/* GLOBAL */
-body {
-  margin:0;
-  padding:0;
-  font-family:'', serif;
-  background:#fff;
-  color:#111;
-  line-height:1.6;
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Fraunces', serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* GRAIN */
+.noise {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 999; opacity: 0.04;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
 }
 
 /* NAV */
-.nav-sections {
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  margin:30px 0;
+nav {
+  position: fixed; top: 30px; right: 40px; z-index: 100;
+  mix-blend-mode: exclusion;
 }
-.nav-sections a {
-  padding:10px 20px;
-  border:2px solid #1b4d3e;
-  border-radius:6px;
-  text-decoration:none;
-  color:#111;
-  font-weight:bold;
-  transition:0.3s;
+nav a {
+  display: block; text-align: right; text-decoration: none;
+  color: #fff; opacity: 0.7;
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 6px; transition: 0.3s;
 }
-.nav-sections a:hover {
-  background:#1b4d3e;
-  color:#fff;
+nav a:hover { opacity: 1; text-decoration: line-through; color: var(--accent); }
+
+/* ===== ARTICLE HERO ===== */
+.article-hero {
+  position: relative;
+  width: 100%; height: 60vh;
+  overflow: hidden;
 }
 
-/* HEADER BANNER */
-.header-banner {
-  width:90%;
-  height:300px;
-  margin:0 auto;
-  border-radius:12px;
-  overflow:hidden;
-}
-.header-banner img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.hero-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* Image désaturée pour l'ambiance théorie/sérieuse */
+  filter: brightness(0.6) grayscale(100%); 
 }
 
-/* TITLE SECTION */
-.article-header {
-  text-align:center;
-  margin:40px auto 20px auto;
-  width:80%;
-}
-.article-header h1 {
-  font-family:'Fraunces', serif;
-  font-size:clamp(32px,5vw,48px);
-  color:#1b4d3e;
-  margin-bottom:5px;
-}
-.article-header .date {
-  font-family:'Fraunces', serif;
-  color:gray;
-  font-size:14px;
-  margin-bottom:15px;
-}
-.article-header p {
-  font-family:'Fraunces', serif;
-  font-weight:normal;
-  font-size:18px;
-  color:#111;
-  max-width:700px;
-  margin:auto;
-  opacity:0.9;
+/* ===== ARTICLE HEADER ===== */
+.header-content {
+  max-width: 900px; margin: 0 auto; padding: 60px 20px 40px 20px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
 }
 
-/* CONTENT */
-.article-content {
-  width:80%;
-  max-width:900px;
-  margin:50px auto;
-  font-size:18px;
-}
-.article-content p {
-  margin-bottom:20px;
-}
-.article-content h2 {
-  font-family:'Fraunces', serif;
-  color:#1b4d3e;
-  margin-top:40px;
-  font-size:22px;
-}
-.quote {
-  font-family:'Fraunces', serif;
-  border-left:3px solid #1b4d3e;
-  padding-left:15px;
-  font-style:italic;
-  color:#333;
-  margin:30px 0;
+.article-title {
+  font-size: clamp(36px, 6vw, 72px); /* Un peu plus petit car le titre est long */
+  font-weight: 300; font-style: italic;
+  line-height: 1.1; margin: 0 0 20px 0;
+  color: var(--accent);
 }
 
-/* FOOTER */
+.article-meta {
+  font-family: 'Space Mono', monospace; font-size: 12px;
+  color: #888; text-transform: uppercase; letter-spacing: 2px;
+  display: flex; gap: 20px; justify-content: center;
+}
+
+/* ===== CONTENT BODY ===== */
+.article-body {
+  max-width: 750px; margin: 60px auto; padding: 0 20px;
+  font-size: 20px; font-weight: 300;
+  color: #d0d0d0;
+}
+
+.article-body p {
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+/* Headings inside article */
+.article-body h2 {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--accent);
+  margin-top: 80px; margin-bottom: 30px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+  display: block; /* Prend toute la largeur */
+}
+
+/* Blockquotes */
+.quote-box {
+  margin: 60px 0; padding: 0 20px;
+  border-left: 1px solid var(--accent);
+}
+.quote-text {
+  font-size: 26px; font-style: italic; line-height: 1.4;
+  color: var(--accent);
+}
+.quote-author {
+  display: block; margin-top: 15px;
+  font-family: 'Space Mono', monospace; font-size: 11px; color: #888;
+}
+
+/* Intro Text Style */
+.intro-lead {
+  font-size: 24px; line-height: 1.5; color: var(--text);
+  margin-bottom: 50px; font-style: italic; border-bottom: 1px solid var(--line); padding-bottom: 40px;
+}
+
+/* References Section */
+.references-section {
+  margin-top: 100px; padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.ref-title {
+  font-family: 'Space Mono'; font-size: 12px; text-transform: uppercase; 
+  color: #666; display: block; margin-bottom: 20px;
+}
+.ref-list {
+  list-style: none; padding: 0; margin: 0;
+}
+.ref-item {
+  font-family: 'Space Mono'; font-size: 11px; color: #666;
+  margin-bottom: 10px; line-height: 1.6;
+}
+.ref-item a { color: #888; text-decoration: underline; }
+
+/* ===== FOOTER NAV ===== */
 .article-footer {
-  text-align:center;
-  margin:50px auto;
+  text-align: center; margin: 60px 0;
 }
-.article-footer a {
-  display:inline-block;
-  margin-top:10px;
-  padding:10px 20px;
-  border:2px solid #1b4d3e;
-  border-radius:6px;
-  text-decoration:none;
-  color:#111;
-  font-weight:bold;
-  transition:0.3s;
+
+.back-btn {
+  font-family: 'Space Mono', monospace; font-size: 12px;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--text); text-decoration: none;
+  border: 1px solid var(--line);
+  padding: 15px 30px; transition: 0.3s;
 }
-.article-footer a:hover {
-  background:#1b4d3e;
-  color:#fff;
+.back-btn:hover { background: var(--text); color: var(--bg); }
+
+/* ANIMATIONS */
+.fade-up {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<div class="nav-sections">
+<div class="noise"></div>
+
+<nav>
   <a href="index.html">Home</a>
   <a href="work.html">Work</a>
+  <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
+</nav>
+
+<div class="article-hero">
+  <img src="barthes.png" alt="Suburban Myth Banner" class="hero-img">
 </div>
 
-<!-- BANNER -->
-<div class="header-banner">
-  <img src="barthesbanner.jpg" alt="Myth of suburban youth banner">
+<div class="header-content fade-up">
+  <h1 class="article-title">The Myth of Suburban Youth</h1>
+  <div class="article-meta">
+    <span>May 20, 2024</span>
+    <span>Theory</span>
+    <span>Roland Barthes</span>
+  </div>
 </div>
 
-<!-- HEADER -->
-<div class="article-header">
-  <h1>The Myth of Suburban Youth</h1>
-  <div class="date">May 20, 2024</div>
-  <p>“Every word, every image carries a story we often take for granted. What do we really see when we look at the ‘banlieue’ and its youth?”</p>
+<div class="article-body fade-up">
+  
+  <div class="intro-lead">
+    “Every word, every image carries a story we often take for granted. What do we really see when we look at the ‘banlieue’ and its youth?”
+  </div>
+
+  <p>
+    Roland Barthes’ <em>Mythologies</em> (1957) examines the hidden cultural meanings embedded in everyday signs and narratives. For Barthes, a “myth” is not a falsehood, but a system of communication that naturalizes a particular worldview, transforming history, ideology, or social constructs into seemingly self-evident truths. Through his lens, objects, words, and images are never neutral—they carry implicit values and assumptions that shape collective perception.
+  </p>
+  <p>
+    In this portfolio piece, the exercise is to decode the myth behind the myth of suburban youth in France. By analyzing political rhetoric, media portrayals, cinema, and music, we can uncover how the figure of the “banlieusard” has been transformed into a symbol carrying broader ideological messages—about delinquency, marginalization, social mobility, and resistance—while obscuring the complex reality of urban life.
+  </p>
+
+  <h2>Political Discourse and the “Kärcher” Controversy</h2>
+  <p>
+    In 2005, Nicolas Sarkozy, then Minister of the Interior, caused controversy: after the shooting death of a child in a neighborhood of La Courneuve, he expressed his desire to “clean the housing project with a Kärcher.” Following these statements, he went to the neighborhood, “pushed through the crowd,” and explained his comment in response to a young man’s remark: “we are not animals,” to which Sarkozy replied that he was referring to delinquents, not the neighborhood as a whole. Seventeen years later, it was the LR presidential candidate Valérie Pécresse who reused the same expression, speaking of “bringing out the Kärcher from the basement” to justify her political will to “clean up the neighborhoods.”
+  </p>
+  <p>
+    This form of oral intertextuality highlights several issues: political discourse often presents a simplified view of delinquency in France, associating it with “neighborhoods” or “housing projects,” which, over twenty years, remain synonymous with crime and insecurity. There is a semantic problem, particularly in the use of the term “banlieue” (suburb), which by simplification evokes sensitive areas, working-class neighborhoods grouped under the same term.
+  </p>
+
+  <h2>Representation in Cinema and Culture</h2>
+  <p>
+    Cinema and culture play a major role in spreading these myths, sometimes deliberately to shock and draw attention to social problems, sometimes unintentionally, reinforcing stereotypes and inequalities. In films, suburbs are often portrayed as dark, squalid, and sad. Youth are represented in extremes: either studying or engaged in drug trafficking (<em>Banlieusards</em>, 2019), where success often means leaving the suburb.
+  </p>
+  <p>
+    The 2019 Korean film <em>Parasite</em>, widely awarded, depicts a family living in the “lower neighborhoods” of Seoul, in precarious conditions, contrasted with the wealthy Parks living in elevated, luxurious houses. This illustrates socio-spatial segregation. The younger Kims infiltrate the Park household to give English lessons, a Machiavellian representation of social mobility and survival in a class-based society.
+  </p>
+  <p>
+    In French cinema, similar contrasts exist, as in <em>Intouchables</em>, where Philippe’s luxurious Parisian residence contrasts with Driss’s cramped, impoverished HLM. Again, the narrative portrays a young, resourceful person striving to escape their origins, often in casual streetwear, which signals social and cultural identity.
+  </p>
+
+  <h2>Historical Roots of the “Savage” Myth</h2>
+  <p>
+    Underlying these representations is the “savage” myth. Historically, “savage” described people living outside “civilized” society. Rousseau presented it positively, as uncorrupted by civilization, but today the term is pejorative, connoting roughness and hostility. Terms like <em>sauvageon</em> continue to label suburban youth, as noted by former Interior Minister Bernard Cazeneuve in 2016.
+  </p>
+  <p>
+    Cinema and performing arts often reinforce this concept, as in <em>L’Enfant sauvage</em> (1970) or Clément Cogitore’s 2017 adaptation of <em>Les Indes Galantes</em>, juxtaposing classical opera with urban Krump dance, reflecting on social and political marginalization. Rap music also invokes this myth, as seen in works by Oxmo Puccino, Casey, and PNL, likening themselves to Mowgli or rebellious animals to assert identity and resistance.
+  </p>
+
+  <h2>Youth as Heroes and Agents of Change</h2>
+  <p>
+    Films like <em>Freedom Writers</em> and <em>Banlieusards</em> highlight suburban youth as heroes overcoming adversity. These narratives emphasize that despite systemic oppression, young people can triumph through education, creativity, and determination. However, these narratives often simplify reality into choices between “success” or “failure,” neglecting structural inequalities.
+  </p>
+
+  <h2>Cultural Influence and Reversal</h2>
+  <p>
+    Today, urban culture exerts widespread influence: hip-hop is France’s most popular music genre, manga consumption is second worldwide, and streetwear fashion reflects suburban youth style. Brands previously excluding these communities now collaborate with them, signaling a cultural shift. Literature and cinema explore themes of identity, gender, and social mobility, emphasizing rhetorical skill and agency to counter stereotypes.
+  </p>
+
+  <div class="references-section">
+    <span class="ref-title">Selected References</span>
+    <ul class="ref-list">
+      <li class="ref-item">Roland Barthes, <em>Mythologies</em> (1957) — Semiotic Analysis</li>
+      <li class="ref-item">Clément Cogitore, <em>Les Indes Galantes</em> (2017) — Opera & Krump</li>
+      <li class="ref-item">Bong Joon-ho, <em>Parasite</em> (2019) — Socio-spatial segregation</li>
+      <li class="ref-item">INA Archives — Political Discourse Analysis (2005-2022)</li>
+    </ul>
+  </div>
+
 </div>
 
-<!-- CONTENT -->
-<div class="article-content">
-
-<p>Roland Barthes’ Mythologies (1957) examines the hidden cultural meanings embedded in everyday signs and narratives. For Barthes, a “myth” is not a falsehood, but a system of communication that naturalizes a particular worldview, transforming history, ideology, or social constructs into seemingly self-evident truths. Through his lens, objects, words, and images are never neutral—they carry implicit values and assumptions that shape collective perception.</p>
-
-<p>In this portfolio piece, the exercise is to decode the myth behind the myth of suburban youth in France. By analyzing political rhetoric, media portrayals, cinema, and music, we can uncover how the figure of the “banlieusard” has been transformed into a symbol carrying broader ideological messages—about delinquency, marginalization, social mobility, and resistance—while obscuring the complex reality of urban life. 
-
-<h2>Political Discourse and the “Kärcher” Controversy</h2>
-<p>In 2005, Nicolas Sarkozy, then Minister of the Interior, caused controversy: after the shooting death of a child in a neighborhood of La Courneuve, he expressed his desire to “clean the housing project with a Kärcher.” Following these statements, he went to the neighborhood, “pushed through the crowd,” and explained his comment in response to a young man’s remark: “we are not animals,” to which Sarkozy replied that he was referring to delinquents, not the neighborhood as a whole. Seventeen years later, it was the LR presidential candidate Valérie Pécresse who reused the same expression, speaking of “bringing out the Kärcher from the basement” to justify her political will to “clean up the neighborhoods.”</p>
-
-<p>This form of oral intertextuality highlights several issues: political discourse often presents a simplified view of delinquency in France, associating it with “neighborhoods” or “housing projects,” which, over twenty years, remain synonymous with crime and insecurity. There is a semantic problem, particularly in the use of the term “banlieue” (suburb), which by simplification evokes sensitive areas, working-class neighborhoods grouped under the same term, which, through hypernymy, encompasses “housing project,” “ghetto,” and “quarters.” This simplification stigmatizes all residents of the suburbs. Adding the term “youth” further obscures the diversity of the population, focusing only on a fraction of its inhabitants. Layered on top are stereotypes and imaginaries associated with these young residents, the “banlieusards.”</p>
-
-<p>The term “banlieue” results from multiple distortions: semantically, it should define the extension of the city beyond its limits, encompassing both Neuilly-sur-Seine, the wealthiest suburb of Île-de-France, and Grigny, at the bottom of the socioeconomic ranking. The term also denotes a universal phenomenon found outside France, referring to those placed “on the margins of places.” Representations of the banlieue and its youth often aim to highlight real social exclusion issues but are also the object of fantasies that perpetuate stereotypes.</p>
-
-<h2>Representation in Cinema and Culture</h2>
-<p>Cinema and culture play a major role in spreading these myths, sometimes deliberately to shock and draw attention to social problems, sometimes unintentionally, reinforcing stereotypes and inequalities. In films, suburbs are often portrayed as dark, squalid, and sad. Youth are represented in extremes: either studying or engaged in drug trafficking (Banlieusards, 2019), where success often means leaving the suburb.</p>
-
-<p>The 2019 Korean film <em>Parasite</em>, widely awarded, depicts a family living in the “lower neighborhoods” of Seoul, in precarious conditions, contrasted with the wealthy Parks living in elevated, luxurious houses. This illustrates socio-spatial segregation: the Kim family’s neighborhood is prone to flooding, unlike the Parks. The younger Kims infiltrate the Park household to give English lessons, a Machiavellian representation of social mobility and survival in a class-based society.</p>
-
-<p>In French cinema, similar contrasts exist, as in <em>Intouchables</em>, where Philippe’s luxurious Parisian residence contrasts with Driss’s cramped, impoverished HLM. Again, the narrative portrays a young, resourceful person striving to escape their origins, often in casual streetwear, which signals social and cultural identity. This is also evident in <em>Le Brio</em> (2017) with Neila, whose arrival in a lecture hall in a hoodie marks her as a “banlieusarde,” challenging societal expectations.</p>
-
-<p>Suburbs are also used in horror and dystopian films to heighten tension: in <em>Morse</em> (2008), the lonely, bleak suburban environment intensifies the shock of violent acts; in <em>The Purge 4</em>, working-class neighborhoods are targeted to critique systemic oppression.</p>
-
-<h2>Historical and Cultural Roots of the “Savage” Myth</h2>
-<p>Underlying these representations is the “savage” myth. Historically, “savage” described people living outside “civilized” society. Rousseau presented it positively, as uncorrupted by civilization, but today the term is pejorative, connoting roughness and hostility. Terms like <em>sauvageon</em> continue to label suburban youth, as noted by former Interior Minister Bernard Cazeneuve in 2016.</p>
-
-<p>Cinema and performing arts often reinforce this concept, as in <em>L’Enfant sauvage</em> (1970) or Clément Cogitore’s 2017 adaptation of <em>Les Indes Galantes</em>, juxtaposing classical opera with urban Krump dance, reflecting on social and political marginalization. Rap music also invokes this myth, as seen in works by Oxmo Puccino, Casey, and PNL, likening themselves to Mowgli or rebellious animals to assert identity and resistance.</p>
-
-<h2>Youth as Heroes and Agents of Change</h2>
-<p>Films like <em>Freedom Writers</em> and <em>Banlieusards</em> highlight suburban youth as heroes overcoming adversity. These narratives emphasize that despite systemic oppression, young people can triumph through education, creativity, and determination. Iconic examples like <em>Rocky</em> represent aspirational heroism, illustrating social mobility through perseverance. However, these narratives often simplify reality into choices between “success” or “failure,” neglecting structural inequalities.</p>
-
-<h2>Media and Political Representation</h2>
-<p>Media coverage of suburban youth tends to be sensationalist, highlighting dramatic events such as “nighttime riots” or police confrontations. This reinforces the stereotype that suburbs are synonymous with violence, often ignoring the broader social realities. Politicians amplify these narratives, as seen in Sarkozy’s or Pécresse’s “Kärcher” statements, reducing complex social dynamics to simplistic and stigmatizing labels.</p>
-
-<p>Historically, terms like “banlieusard” and “young suburban” evolved pejoratively, linked to poverty, immigration, and working-class identity. Literature, cinema, and rap music challenge these stigmas, offering alternative narratives of resilience, identity, and social critique. Rap artists like Kery James reclaim derogatory labels (“racailles”), turning them against political oppressors, asserting that true delinquents are those in power.</p>
-
-<h2>Cultural Influence and Reversal of Stereotypes</h2>
-<p>Today, urban culture exerts widespread influence: hip-hop is France’s most popular music genre, manga consumption is second worldwide, and streetwear fashion reflects suburban youth style. Brands previously excluding these communities now collaborate with them, signaling a cultural shift. Literature and cinema explore themes of identity, gender, and social mobility, emphasizing rhetorical skill and agency to counter stereotypes.</p>
-
-<p>Through music, film, and literature, young people from suburbs actively contest oppression, reclaim narratives, and challenge political and media portrayals. Governments have even responded, as in Seoul, providing housing support inspired by the global impact of <em>Parasite</em>, highlighting the power of cultural representation to influence policy.</p>
-
-<h2>References</h2>
-<p>
-Centre National de Ressources Textuelles et Lexicales. (n.d.). Sauvage. https://www.cnrtl.fr/definition/sauvage<br>
-Clément Cogitore. (2021, June 23). Indes galantes ou comment Clément Cogitore a réalisé un choc esthétique et politique avec l’œuvre de Rameau. Le Monde. https://www.lemonde.fr/culture/article/2021/06/23/indes-galantes-ou-comment-clement-cogitore-a-realise-un-choc-esthetique-et-politique-avec-l-uvre-de-ram _6085322_3246.html<br>
-F2 Le Journal 13H. (1996, February 10). Presented by Bruno Masure [Television broadcast]. YouTube. https://www.youtube.com/watch?v=oMKlktq9SD0<br>
-INA. (n.d.). Nicolas Sarkozy en 2005: le terme “nettoyer au Kärcher” est un terme qui s’impose. https://www.ina.fr/ina-eclaire-actu/nicolas-sarkozy-en-2005-le-terme-nettoyer-au-karcher-est-un-terme-qui-s-impose<br>
-Persée. (1997). Colloque: Définition et usages du terme “banlieue”. https://www.persee.fr/doc/colan_0336-1500_1997_num_113_1_2789<br>
-Radio France. (2023, September 7). Le hip-hop a 50 ans: c’était mieux avant. https://www.radiofrance.fr/culture/podcasts/sous-les-radars/le-hip-hop-a-50-ans-c-etait-mieux-avant-3330016<br>
-Radio France Mouv. (n.d.). Parasite: la Corée du Sud va aider 1 500 foyers grâce au film. https://www.radiofrance.fr/mouv/parasite-la-coree-du-sud-va-aider-1500-foyers-grace-au-film-8831894<br>
-Wikipedia. (n.d.). Banlieue. https://fr.wikipedia.org/wiki/Banlieue<br>
-L’Humanité. (2021, May 12). C’est la mode quand les riches se déguisent en pauvres. https://www.humanite.fr/social-et-economie/lutte-des-classes/cest-la-mode-quand-les-riches-se-deguisent-en-pauvres-761838
-</p>
-
-</div>
-
-<!-- FOOTER -->
 <div class="article-footer">
-  <p>Written & curated by HANA-LISA H.</p>
-  <a href="work.html">← Back to Works</a>
+  <a href="work.html" class="back-btn">← Back to Archive</a>
+  <br><br>
+  <span style="font-family:'Space Mono'; font-size:10px; color:#444;">HANA-LISA H. © 2025</span>
 </div>
+
+<script>
+// SMOOTH REVEAL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = 'translateY(40px)';
+  el.style.transition = 'all 0.8s ease-out';
+  observer.observe(el);
+});
+</script>
 
 </body>
 </html>
